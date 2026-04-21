@@ -31,13 +31,19 @@ const ContactForm = ({ variant = "v1" }) => {
 
   const containerClass = variant === "v2" 
     ? "max-w-3xl mx-auto border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 md:p-14 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl shadow-2xl shadow-blue-500/5"
+    : variant === "v3"
+    ? "bg-transparent p-0 border-none shadow-none"
     : "bg-white dark:bg-slate-900 rounded-3xl p-8 md:p-12 border border-slate-100 dark:border-slate-800 shadow-xl";
 
   const inputClass = variant === "v2" 
     ? "w-full px-0 py-4 bg-transparent border-b border-slate-200 dark:border-slate-800 focus:border-blue-500 outline-none transition-all text-lg font-light placeholder:text-slate-300 dark:placeholder:text-slate-700 focus:placeholder:opacity-0"
+    : variant === "v3"
+    ? "w-full px-4 py-3 bg-white/50 dark:bg-slate-800/50 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 focus:ring-2 focus:ring-indigo-500 outline-none transition-all text-sm"
     : "w-full px-6 py-4 bg-slate-50 dark:bg-slate-800 rounded-xl border-none focus:ring-2 focus:ring-primary outline-none transition-all";
 
-  const labelClass = "text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 dark:text-blue-400 mb-2 block";
+  const labelClass = variant === "v3"
+    ? "text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 mb-2 block"
+    : "text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 dark:text-blue-400 mb-2 block";
 
   return (
     <motion.div
@@ -47,8 +53,8 @@ const ContactForm = ({ variant = "v1" }) => {
       viewport={{ once: true }}
       className={containerClass}
     >
-      <form onSubmit={handleSubmit} className="space-y-12">
-        <div className="grid md:grid-cols-2 gap-12">
+      <form onSubmit={handleSubmit} className={variant === "v3" ? "space-y-6" : "space-y-12"}>
+        <div className={variant === "v3" ? "grid gap-6" : "grid md:grid-cols-2 gap-12"}>
           <div className="text-left">
             <label className={labelClass}>{t('contact_form.name')}</label>
             <input
@@ -80,7 +86,7 @@ const ContactForm = ({ variant = "v1" }) => {
           <textarea
             required
             name="message"
-            rows="4"
+            rows={variant === "v3" ? "3" : "4"}
             placeholder="How can I help you?"
             value={formData.message}
             onChange={handleChange}
@@ -101,6 +107,16 @@ const ContactForm = ({ variant = "v1" }) => {
                 <span>{t('contact_form.send')}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-500" />
               </div>
+            </motion.button>
+          ) : variant === "v3" ? (
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-indigo-500/20"
+            >
+              <span>{t('contact_form.send')}</span>
+              <Send size={18} />
             </motion.button>
           ) : (
             <button

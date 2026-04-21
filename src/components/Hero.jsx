@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Mail, Linkedin, Youtube, Github, Download } from 'lucide-react';
 
 const Hero = () => {
   const { t, i18n } = useTranslation();
+  const [imageError, setImageError] = useState(false);
   const lang = i18n.language;
   const cvData = window.cvData;
 
@@ -31,7 +33,7 @@ const Hero = () => {
           {cvData.name}
         </motion.h1>
 
-        {cvData.avatar && (
+        {cvData.is_avatar && cvData.avatar && !imageError && (
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -41,6 +43,7 @@ const Hero = () => {
             <img 
               src={cvData.avatar} 
               alt={cvData.name} 
+              onError={() => setImageError(true)}
               className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary/20 shadow-xl mx-auto"
             />
           </motion.div>

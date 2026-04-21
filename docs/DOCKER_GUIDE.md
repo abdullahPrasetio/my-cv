@@ -15,7 +15,7 @@ Pastikan Anda telah menginstal:
 Anda hanya perlu menjalankan perintah ini satu kali atau saat ada perubahan kode program (Logic/UI).
 
 ```bash
-docker build -t my-cv-universal .
+docker build -t abdullahprasetio/cv-universal .
 ```
 
 ---
@@ -25,7 +25,7 @@ docker build -t my-cv-universal .
 ### A. Menjalankan Versi Default (V2)
 Secara default, aplikasi akan berjalan pada Versi 2 di port 8080.
 ```bash
-docker run -d -p 8080:80 --name my-portofolio my-cv-universal
+docker run -d -p 8080:80 --name my-portofolio abdullahprasetio/cv-universal
 ```
 
 ### B. Menentukan Versi Utama via Environment Variable
@@ -36,7 +36,7 @@ Anda bisa menentukan versi mana yang muncul saat pertama kali membuka `/` (Home)
 docker run -d -p 8081:80 \
   -e DEFAULT_VERSION=v1 \
   --name portofolio-v1 \
-  my-cv-universal
+  abdullahprasetio/cv-universal
 ```
 
 ---
@@ -50,7 +50,16 @@ docker run -d -p 8082:80 \
   -e DEFAULT_VERSION=v2 \
   -v $(pwd)/data-baru.json:/usr/share/nginx/html/cv.json \
   --name portofolio-custom-data \
-  my-cv-universal
+  abdullahprasetio/cv-universal
+```
+
+```bash
+docker run -d -p 8083:80 \
+  -e DEFAULT_VERSION=v2 \
+  -v $(pwd)/cv.json:/usr/share/nginx/html/cv.json \
+  -v $(pwd)/resume.pdf:/usr/share/nginx/html/resume.pdf \ 
+  --name portofolio-custom-data-resume \
+  abdullahprasetio/cv-universal
 ```
 
 ---

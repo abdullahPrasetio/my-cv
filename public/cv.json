@@ -1,6 +1,7 @@
 {
   "name": "Waluyo Ade Prasetio",
   "avatar": "/src/assets/hero.png",
+  "is_avatar": false,
   "title": {
     "en": "Fullstack Developer & Technical Lead",
     "id": "Fullstack Developer & Technical Lead"
