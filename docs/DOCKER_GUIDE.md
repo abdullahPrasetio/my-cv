@@ -1,6 +1,6 @@
-# Panduan Penggunaan Docker - Universal Portfolio
+# Panduan Penggunaan Docker - Universal Portofolio
 
-Dokumen ini menjelaskan cara membungkus, menjalankan, dan melakukan kustomisasi aplikasi Portfolio menggunakan Docker. Project ini didesain agar Anda cukup melakukan **build satu kali**, namun bisa dijalankan dengan berbagai versi tampilan dan data yang berbeda.
+Dokumen ini menjelaskan cara membungkus, menjalankan, dan melakukan kustomisasi aplikasi Portofolio menggunakan Docker. Project ini didesain agar Anda cukup melakukan **build satu kali**, namun bisa dijalankan dengan berbagai versi tampilan dan data yang berbeda.
 
 ---
 
@@ -25,7 +25,7 @@ docker build -t my-cv-universal .
 ### A. Menjalankan Versi Default (V2)
 Secara default, aplikasi akan berjalan pada Versi 2 di port 8080.
 ```bash
-docker run -d -p 8080:80 --name my-portfolio my-cv-universal
+docker run -d -p 8080:80 --name my-portofolio my-cv-universal
 ```
 
 ### B. Menentukan Versi Utama via Environment Variable
@@ -35,7 +35,7 @@ Anda bisa menentukan versi mana yang muncul saat pertama kali membuka `/` (Home)
 ```bash
 docker run -d -p 8081:80 \
   -e DEFAULT_VERSION=v1 \
-  --name portfolio-v1 \
+  --name portofolio-v1 \
   my-cv-universal
 ```
 
@@ -49,7 +49,7 @@ Misalkan Anda memiliki file `data-baru.json` di folder saat ini:
 docker run -d -p 8082:80 \
   -e DEFAULT_VERSION=v2 \
   -v $(pwd)/data-baru.json:/usr/share/nginx/html/cv.json \
-  --name portfolio-custom-data \
+  --name portofolio-custom-data \
   my-cv-universal
 ```
 
@@ -62,7 +62,7 @@ Untuk pengelolaan yang lebih rapi, gunakan file `docker-compose.yml`.
 ```yaml
 version: "3.8"
 services:
-  portfolio:
+  portofolio:
     build: .
     ports:
       - "8080:80"

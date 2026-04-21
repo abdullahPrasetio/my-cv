@@ -18,7 +18,7 @@ const ContactForm = ({ variant = "v1" }) => {
     e.preventDefault();
     
     const recipient = cvData.contacts.email;
-    const subject = `Portfolio Inquiry from ${formData.name}`;
+    const subject = `Portofolio Inquiry from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
     
     const gmailUrl = `https://mail.google.com/mail/u/0/?fs=1&to=${recipient}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}&tf=cm`;

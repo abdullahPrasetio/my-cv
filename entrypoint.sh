@@ -1,5 +1,5 @@
 #!/bin/sh
-# Entrypoint untuk aplikasi universal portfolio
+# Entrypoint untuk aplikasi universal portofolio
 
 # 1. Buat runtime config JSON
 echo "{\"defaultVersion\": \"${DEFAULT_VERSION:-v2}\"}" > /usr/share/nginx/html/config.json

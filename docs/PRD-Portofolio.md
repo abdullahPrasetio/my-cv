@@ -1,10 +1,10 @@
-# PRD: Auto-Generated Portfolio Website from CV
+# PRD: Auto-Generated Portofolio Website from CV
 
 ## Overview
-Membangun web portfolio modern berbasis SPA yang membaca CV dari folder /docs dan mengubahnya menjadi website profesional.
+Membangun web portofolio modern berbasis SPA yang membaca CV dari folder /docs dan mengubahnya menjadi website profesional.
 
 ## Objectives
-- Transform CV menjadi portfolio interaktif
+- Transform CV menjadi portofolio interaktif
 - Menampilkan Fullstack Developer & Squad Leader profile
 - Deploy ke GitHub Pages & CasaOS (Docker)
 
@@ -54,13 +54,13 @@ CMD ["nginx", "-g", "daemon off;"]
 ## docker-compose
 version: "3"
 services:
-  portfolio:
+  portofolio:
     build: .
     ports:
       - "8080:80"
 
 ## Gemini Prompt
-Create a modern portfolio SPA that parses CV from /docs and renders sections dynamically using TailwindCSS and React or Vue.
+Create a modern portofolio SPA that parses CV from /docs and renders sections dynamically using TailwindCSS and React or Vue.
 
 ## Success Criteria
 - CV auto parsed

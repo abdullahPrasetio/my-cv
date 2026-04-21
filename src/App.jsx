@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { portfolioVersions } from './version-registry';
+import { portofolioVersions } from './version-registry';
 
 function App() {
   const [config, setConfig] = useState(null);
@@ -29,14 +29,14 @@ function App() {
 
         // Update HTML Title secara dinamis
         if (cvData.name) {
-          document.title = `${cvData.name} | Portfolio`;
+          document.title = `${cvData.name} | Portofolio`;
         } else {
-          document.title = "My Portfolio";
+          document.title = "My Portofolio";
         }
       } catch (err) {
         console.error("Critical Load Error:", err);
         setError(err.message);
-        document.title = "My Portfolio";
+        document.title = "My Portofolio";
       }
     };
 
@@ -59,13 +59,13 @@ function App() {
   );
 
   const defaultVersion = config.defaultVersion || 'v2';
-  const DefaultComponent = portfolioVersions[defaultVersion] || portfolioVersions['v2'];
+  const DefaultComponent = portofolioVersions[defaultVersion] || portofolioVersions['v2'];
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<DefaultComponent />} />
-        {Object.entries(portfolioVersions).map(([key, Component]) => (
+        {Object.entries(portofolioVersions).map(([key, Component]) => (
           <Route key={key} path={`/${key}`} element={<Component />} />
         ))}
         <Route path="*" element={<Navigate to="/" replace />} />

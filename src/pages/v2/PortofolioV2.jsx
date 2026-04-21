@@ -4,7 +4,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { Sun, Moon, ArrowRight, Github, Linkedin, Youtube, Mail, ExternalLink, Download } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
 
-const PortfolioV2 = () => {
+const PortofolioV2 = () => {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const lang = i18n.language;
@@ -200,4 +200,4 @@ const PortfolioV2 = () => {
   );
 };
 
-export default PortfolioV2;
+export default PortofolioV2;

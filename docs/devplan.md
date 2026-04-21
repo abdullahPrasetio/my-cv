@@ -1,7 +1,7 @@
-# Development Plan - Modern Portfolio SPA
+# Development Plan - Modern Portofolio SPA
 
 ## 1. Project Overview
-Membangun website portfolio profesional menggunakan React, TailwindCSS, dan Framer Motion. Data bersumber dari CV dan LinkedIn Waluyo Ade Prasetio.
+Membangun website portofolio profesional menggunakan React, TailwindCSS, dan Framer Motion. Data bersumber dari CV dan LinkedIn Waluyo Ade Prasetio.
 
 ## 2. Technical Stack
 - **Framework:** React (Vite)
