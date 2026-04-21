@@ -1,0 +1,10 @@
+node_modules
+.git
+.DS_Store
+dist
+docs
+public/cv.json
+public/resume.pdf
+src/data/cv.json
+package-lock.json
+npm-debug.log

@@ -1,0 +1,49 @@
+{
+  "name": "John Doe",
+  "title": {
+    "en": "Fullstack Developer",
+    "id": "Fullstack Developer"
+  },
+  "location": "Earth",
+  "contacts": {
+    "email": "hello@example.com",
+    "linkedin": "#",
+    "github": "#",
+    "youtube": "#"
+  },
+  "summary": {
+    "en": "A professional software engineer with a passion for building great things. Please mount your own cv.json to see real data.",
+    "id": "Insinyur perangkat lunak profesional. Silakan mount file cv.json Anda untuk melihat data asli."
+  },
+  "skills": [
+    { "name": "React", "level": 100 },
+    { "name": "Docker", "level": 100 }
+  ],
+  "experience": [
+    {
+      "company": "Example Corp",
+      "roles": [
+        {
+          "title": { "en": "Senior Dev", "id": "Senior Dev" },
+          "period": "2020 - Present",
+          "description": { "en": "Working on awesome things.", "id": "Mengerjakan hal-hal luar biasa." }
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Project Alpha",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+      "description": { "en": "Placeholder project.", "id": "Proyek placeholder." },
+      "tags": ["React"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Technology",
+      "degree": "Computer Science",
+      "period": "2015-2019"
+    }
+  ]
+}
