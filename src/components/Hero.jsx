@@ -31,6 +31,21 @@ const Hero = () => {
           {cvData.name}
         </motion.h1>
 
+        {cvData.avatar && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mb-8"
+          >
+            <img 
+              src={cvData.avatar} 
+              alt={cvData.name} 
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary/20 shadow-xl mx-auto"
+            />
+          </motion.div>
+        )}
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -53,6 +53,24 @@ const PortofolioV2 = () => {
               & Technical Lead.
             </span>
           </h1>
+
+          {cvData.avatar && (
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="absolute right-6 md:right-24 top-1/2 -translate-y-1/2 hidden lg:block"
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-emerald-500 rounded-full opacity-20 group-hover:opacity-40 blur-2xl transition-opacity duration-500"></div>
+                <img 
+                  src={cvData.avatar} 
+                  alt={cvData.name} 
+                  className="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-700 border-2 border-white/10"
+                />
+              </div>
+            </motion.div>
+          )}
           
           <div className="flex flex-col md:flex-row md:items-center gap-12 mt-12">
             <div className="flex items-center gap-8">

@@ -1,5 +1,6 @@
 {
   "name": "John Doe",
+  "avatar": "/src/assets/hero.png",
   "title": {
     "en": "Fullstack Developer",
     "id": "Fullstack Developer"
