@@ -24,10 +24,10 @@
   "experience": [
     {
       "company": "Example Corp",
+      "period": "2020 - Present",
       "roles": [
         {
           "title": { "en": "Senior Dev", "id": "Senior Dev" },
-          "period": "2020 - Present",
           "description": { "en": "Working on awesome things.", "id": "Mengerjakan hal-hal luar biasa." }
         }
       ]

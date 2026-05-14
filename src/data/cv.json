@@ -34,10 +34,10 @@
   "experience": [
     {
       "company": "PT Bank Rakyat Indonesia (Persero) Tbk",
+      "period": "Jan 2023 - Present",
       "roles": [
         {
           "title": { "en": "Technical Lead", "id": "Technical Lead" },
-          "period": "Jan 2023 - Present",
           "description": {
             "en": "Responsible for development, architecture, and optimization of Brimerchant and MMS systems. Leading small teams (squads) to ensure projects meet timelines and BRI quality standards.",
             "id": "Bertanggung jawab dalam pengembangan, arsitektur, serta optimalisasi sistem Brimerchant dan MMS. Memimpin tim kecil (squad) untuk memastikan proyek berjalan sesuai timeline dan standar kualitas BRI."
@@ -45,7 +45,6 @@
         },
         {
           "title": { "en": "DevOps Engineer", "id": "DevOps Engineer" },
-          "period": "Jan 2023 - Present",
           "description": {
             "en": "Managing CI/CD pipelines, containerization, and monitoring system performance using ElasticSearch.",
             "id": "Mengelola pipeline CI/CD, kontainerisasi, dan monitoring performa sistem menggunakan ElasticSearch."
@@ -55,10 +54,10 @@
     },
     {
       "company": "Telkom Indonesia",
+      "period": "Jun 2023 - Present",
       "roles": [
         {
           "title": { "en": "Software Developer", "id": "Software Developer" },
-          "period": "Jun 2023 - Present",
           "description": {
             "en": "Developing software solutions with focus on JavaScript and clean coding practices.",
             "id": "Mengembangkan solusi perangkat lunak dengan fokus pada JavaScript dan praktik clean coding."
