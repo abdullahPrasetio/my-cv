@@ -1,7 +1,11 @@
 version: "3.8"
+
 services:
-  portofolio:
-    build: .
+  portfolio:
+    build:
+      context: .
+      args:
+        VITE_API_URL: ${VITE_API_URL:-/api/v1}
     ports:
       - "8080:80"
     restart: always
