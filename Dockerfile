@@ -12,7 +12,7 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=build-stage /app/dist .
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.portfolio.conf /etc/nginx/conf.d/default.conf
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 EXPOSE 80

@@ -24,3 +24,17 @@ dist-ssr
 *.sw?
 
 .env
+
+# Backend Go binary
+backend/cv-backend
+backend/tmp/
+
+# Admin Nuxt build
+admin/node_modules/
+admin/.output/
+admin/.nuxt/
+admin/.cache/
+
+# Cloudflare credentials (jangan commit!)
+cloudflared/creds.json
+cloudflared/*.json

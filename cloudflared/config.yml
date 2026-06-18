@@ -1,0 +1,16 @@
+# Cloudflare Tunnel configuration
+# Ganti <TUNNEL_ID> dengan ID tunnel yang dibuat via: cloudflared tunnel create cv-platform
+tunnel: <TUNNEL_ID>
+credentials-file: /etc/cloudflared/creds.json
+
+ingress:
+  # Portfolio + API (via nginx reverse proxy)
+  - hostname: domain.com
+    service: http://nginx:80
+
+  # Admin panel (langsung ke Nuxt container)
+  - hostname: admin.domain.com
+    service: http://admin:3000
+
+  # Fallback wajib ada di bagian akhir
+  - service: http_status:404
