@@ -7,9 +7,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Portfolio
+portfolio/node_modules/
+portfolio/dist/
+portfolio/dist-ssr/
+
 dist
 dist-ssr
+node_modules
 *.local
 
 # Editor directories and files

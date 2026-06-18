@@ -14,7 +14,7 @@ services:
 
   portfolio:
     build:
-      context: .
+      context: ./portfolio
       args:
         VITE_API_URL: /api/v1
     expose:
