@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/example/cv-backend/internal/domain/entity"
+	"github.com/example/wapcv/internal/domain/entity"
 )
 
 // CvRepository defines persistence operations for the cv domain.

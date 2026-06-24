@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/example/cv-backend/internal/domain/entity"
-	"github.com/example/cv-backend/internal/usecase"
+	"github.com/example/wapcv/internal/domain/entity"
+	"github.com/example/wapcv/internal/usecase"
 )
 
 // mockMediaRepository is a hand-written mock for domainrepo.MediaRepository.

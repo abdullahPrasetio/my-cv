@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"
 
-	"github.com/example/cv-backend/config"
+	"github.com/example/wapcv/config"
 )
 
 func NewConnection(cfg *config.DBConfig) (*gorm.DB, error) {

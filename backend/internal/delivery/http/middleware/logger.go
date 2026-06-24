@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 
-	applogger "github.com/example/cv-backend/pkg/logger"
+	applogger "github.com/example/wapcv/pkg/logger"
 )
 
 func RequestID() fiber.Handler {

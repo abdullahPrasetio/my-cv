@@ -5,10 +5,10 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/example/cv-backend/internal/usecase"
-	pkgauth "github.com/example/cv-backend/pkg/auth"
-	"github.com/example/cv-backend/pkg/response"
-	"github.com/example/cv-backend/pkg/validator"
+	"github.com/example/wapcv/internal/usecase"
+	pkgauth "github.com/example/wapcv/pkg/auth"
+	"github.com/example/wapcv/pkg/response"
+	"github.com/example/wapcv/pkg/validator"
 )
 
 type AuthHandler struct {
@@ -55,11 +55,11 @@ func (h *AuthHandler) Me(c *fiber.Ctx) error {
 	if claims == nil {
 		return fiber.ErrUnauthorized
 	}
-	return response.Success(c, "authenticated", fiber.Map{
-		"user_id":  claims.Subject,
-		"roles":    claims.Roles,
-		"exp":      claims.ExpiresAt,
-	})
+	user, err := h.uc.Me(c.UserContext(), claims.Subject)
+	if err != nil {
+		return response.InternalError(c)
+	}
+	return response.Success(c, "authenticated", user)
 }
 
 func (h *AuthHandler) mapError(c *fiber.Ctx, err error) error {

@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
-	"github.com/example/cv-backend/internal/domain/entity"
-	domainrepo "github.com/example/cv-backend/internal/domain/repository"
+	"github.com/example/wapcv/internal/domain/entity"
+	domainrepo "github.com/example/wapcv/internal/domain/repository"
 )
 
 type mediaRepository struct {

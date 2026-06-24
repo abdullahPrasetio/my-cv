@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/example/cv-backend/internal/domain/entity"
+	"github.com/example/wapcv/internal/domain/entity"
 )
 
 // PortfolioConfigRepository defines persistence operations for the portfolio_config domain.

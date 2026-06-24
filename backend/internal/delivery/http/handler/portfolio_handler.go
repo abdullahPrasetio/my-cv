@@ -8,15 +8,15 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
-	"github.com/example/cv-backend/internal/usecase"
-	domainrepo "github.com/example/cv-backend/internal/domain/repository"
-	"github.com/example/cv-backend/pkg/response"
+	domainrepo "github.com/example/wapcv/internal/domain/repository"
+	"github.com/example/wapcv/internal/usecase"
+	"github.com/example/wapcv/pkg/response"
 )
 
 type PortfolioHandler struct {
-	userRepo   domainrepo.UserRepository
-	cvUC       usecase.CvUseCase
-	configUC   usecase.PortfolioConfigUseCase
+	userRepo domainrepo.UserRepository
+	cvUC     usecase.CvUseCase
+	configUC usecase.PortfolioConfigUseCase
 }
 
 func NewPortfolioHandler(
@@ -52,8 +52,8 @@ func (h *PortfolioHandler) GetByUsername(c *fiber.Ctx) error {
 		"status":  true,
 		"message": "portfolio retrieved",
 		"data": fiber.Map{
-			"user":           fiber.Map{"id": user.ID, "username": user.Username, "name": user.Name},
-			"cv":             json.RawMessage(cvData),
+			"user":            fiber.Map{"id": user.ID, "username": user.Username, "name": user.Name},
+			"cv":              json.RawMessage(cvData),
 			"default_version": cfg.DefaultVersion,
 		},
 	})

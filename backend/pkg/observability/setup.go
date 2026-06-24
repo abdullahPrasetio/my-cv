@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/example/cv-backend/config"
+	"github.com/example/wapcv/config"
 )
 
 // New creates the observability Provider selected by cfg.Provider:

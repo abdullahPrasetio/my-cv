@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"path/filepath"
+	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/credentials"
@@ -44,14 +45,45 @@ func NewR2Storage(cfg R2Config) (*R2Storage, error) {
 	}, nil
 }
 
+// Delete removes an object from R2 by its public URL.
+func (r *R2Storage) Delete(ctx context.Context, publicURL string) error {
+	if publicURL == "" || r.publicURL == "" {
+		return nil
+	}
+	prefix := r.publicURL + "/"
+	if !strings.HasPrefix(publicURL, prefix) {
+		return nil
+	}
+	key := strings.TrimPrefix(publicURL, prefix)
+	if i := strings.Index(key, "?"); i != -1 {
+		key = key[:i]
+	}
+	_, err := r.client.DeleteObject(ctx, &s3.DeleteObjectInput{
+		Bucket: aws.String(r.bucket),
+		Key:    aws.String(key),
+	})
+	if err != nil {
+		return fmt.Errorf("r2 delete: %w", err)
+	}
+	return nil
+}
+
+type UploadOptions struct {
+	ContentDisposition string // e.g. "attachment; filename=\"resume.pdf\""
+}
+
 // Upload stores data in R2 under key and returns the public URL.
-func (r *R2Storage) Upload(ctx context.Context, key string, data []byte, contentType string) (string, error) {
-	_, err := r.client.PutObject(ctx, &s3.PutObjectInput{
+func (r *R2Storage) Upload(ctx context.Context, key string, data []byte, contentType string, opts ...UploadOptions) (string, error) {
+	input := &s3.PutObjectInput{
 		Bucket:      aws.String(r.bucket),
 		Key:         aws.String(key),
 		Body:        bytes.NewReader(data),
 		ContentType: aws.String(contentType),
-	})
+	}
+	if len(opts) > 0 && opts[0].ContentDisposition != "" {
+		input.ContentDisposition = aws.String(opts[0].ContentDisposition)
+	}
+	_, err := r.client.PutObject(ctx, input)
 	if err != nil {
 		return "", fmt.Errorf("r2 upload: %w", err)
 	}

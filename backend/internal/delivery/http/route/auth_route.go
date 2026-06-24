@@ -3,8 +3,8 @@ package route
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/example/cv-backend/internal/delivery/http/handler"
-	pkgauth "github.com/example/cv-backend/pkg/auth"
+	"github.com/example/wapcv/internal/delivery/http/handler"
+	pkgauth "github.com/example/wapcv/pkg/auth"
 )
 
 func RegisterAuthRoutes(router fiber.Router, h *handler.AuthHandler, jwtCfg *pkgauth.Config) {

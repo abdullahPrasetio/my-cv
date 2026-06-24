@@ -3,8 +3,8 @@ package handler
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/example/cv-backend/internal/usecase"
-	"github.com/example/cv-backend/pkg/response"
+	"github.com/example/wapcv/internal/usecase"
+	"github.com/example/wapcv/pkg/response"
 )
 
 type MediaHandler struct {
@@ -26,10 +26,17 @@ func (h *MediaHandler) Upload(c *fiber.Ctx) error {
 		return response.BadRequest(c, "file is required")
 	}
 
+	const maxSize = 2 * 1024 * 1024 // 2MB
+	if file.Size > maxSize {
+		return response.BadRequest(c, "ukuran file melebihi batas 2MB")
+	}
+
 	folder := c.FormValue("folder", "projects")
 	if folder != "avatar" && folder != "projects" && folder != "resume" {
 		folder = "projects"
 	}
+
+	oldURL := c.FormValue("old_url")
 
 	f, err := file.Open()
 	if err != nil {
@@ -52,6 +59,7 @@ func (h *MediaHandler) Upload(c *fiber.Ctx) error {
 		Data:        data,
 		ContentType: contentType,
 		Folder:      folder,
+		OldURL:      oldURL,
 	})
 	if err != nil {
 		return response.InternalError(c)

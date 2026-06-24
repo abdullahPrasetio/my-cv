@@ -6,9 +6,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 
-	"github.com/example/cv-backend/pkg/journal"
-	applogger "github.com/example/cv-backend/pkg/logger"
-	"github.com/example/cv-backend/pkg/observability"
+	"github.com/example/wapcv/pkg/journal"
+	applogger "github.com/example/wapcv/pkg/logger"
+	"github.com/example/wapcv/pkg/observability"
 )
 
 // AccessLogOptions configures the full request/response access log.

@@ -3,9 +3,9 @@ package route
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/example/cv-backend/internal/delivery/http/handler"
-	pkgauth "github.com/example/cv-backend/pkg/auth"
-	"github.com/example/cv-backend/pkg/observability"
+	"github.com/example/wapcv/internal/delivery/http/handler"
+	pkgauth "github.com/example/wapcv/pkg/auth"
+	"github.com/example/wapcv/pkg/observability"
 )
 
 func Setup(
@@ -27,7 +27,9 @@ func Setup(
 	RegisterAuthRoutes(v1, authHandler, jwtCfg)
 	RegisterCvRoutes(v1, cvHandler, jwtCfg)
 	RegisterPortfolioConfigRoutes(v1, configHandler, jwtCfg)
-	RegisterMediaRoutes(v1, mediaHandler, jwtCfg)
+	if mediaHandler != nil {
+		RegisterMediaRoutes(v1, mediaHandler, jwtCfg)
+	}
 	RegisterPortfolioRoutes(v1, portfolioHandler)
 }
 

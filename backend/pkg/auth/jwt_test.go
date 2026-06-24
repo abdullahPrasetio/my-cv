@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/example/cv-backend/pkg/auth"
+	"github.com/example/wapcv/pkg/auth"
 )
 
 var testCfg = &auth.Config{

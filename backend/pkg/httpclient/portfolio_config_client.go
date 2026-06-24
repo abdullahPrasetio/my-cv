@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/example/cv-backend/internal/domain/entity"
+	"github.com/example/wapcv/internal/domain/entity"
 )
 
 // ErrPortfolioConfigNotFound is returned when the remote service returns HTTP 404.

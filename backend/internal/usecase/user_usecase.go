@@ -12,8 +12,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	"github.com/example/cv-backend/internal/domain/entity"
-	domainrepo "github.com/example/cv-backend/internal/domain/repository"
+	"github.com/example/wapcv/internal/domain/entity"
+	domainrepo "github.com/example/wapcv/internal/domain/repository"
 )
 
 // userTracer is named per-domain so usecases generated later (wapgo make:usecase)

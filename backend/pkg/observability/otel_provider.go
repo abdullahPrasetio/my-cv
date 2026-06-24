@@ -22,7 +22,7 @@ import (
 	tracenoop "go.opentelemetry.io/otel/trace/noop"
 	"gorm.io/gorm"
 
-	applogger "github.com/example/cv-backend/pkg/logger"
+	applogger "github.com/example/wapcv/pkg/logger"
 )
 
 // otelProvider implements Provider using the OpenTelemetry SDK.

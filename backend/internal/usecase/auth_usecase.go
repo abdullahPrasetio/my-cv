@@ -6,12 +6,13 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	"github.com/example/cv-backend/internal/domain/entity"
-	domainrepo "github.com/example/cv-backend/internal/domain/repository"
-	"github.com/example/cv-backend/pkg/auth"
+	"github.com/example/wapcv/internal/domain/entity"
+	domainrepo "github.com/example/wapcv/internal/domain/repository"
+	"github.com/example/wapcv/pkg/auth"
 )
 
 var (
@@ -40,6 +41,7 @@ type AuthResponse struct {
 type AuthUseCase interface {
 	Register(ctx context.Context, req *RegisterRequest) (*AuthResponse, error)
 	Login(ctx context.Context, req *LoginRequest) (*AuthResponse, error)
+	Me(ctx context.Context, userID string) (*entity.User, error)
 }
 
 type authUseCase struct {
@@ -100,6 +102,14 @@ func (u *authUseCase) Login(ctx context.Context, req *LoginRequest) (*AuthRespon
 	}
 
 	return u.issueToken(user)
+}
+
+func (u *authUseCase) Me(ctx context.Context, userID string) (*entity.User, error) {
+	id, err := uuid.Parse(userID)
+	if err != nil {
+		return nil, fmt.Errorf("invalid user id: %w", err)
+	}
+	return u.userRepo.FindByID(ctx, id)
 }
 
 func (u *authUseCase) issueToken(user *entity.User) (*AuthResponse, error) {

@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/example/cv-backend/internal/domain/entity"
+	"github.com/example/wapcv/internal/domain/entity"
 )
 
 // ExternalMediaService is the interface for fetching media data from another microservice.

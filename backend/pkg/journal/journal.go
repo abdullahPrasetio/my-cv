@@ -15,7 +15,7 @@ import (
 	"sync"
 	"time"
 
-	applogger "github.com/example/cv-backend/pkg/logger"
+	applogger "github.com/example/wapcv/pkg/logger"
 )
 
 // Kind identifies the parent record a journal belongs to.

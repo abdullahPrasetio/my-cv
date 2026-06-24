@@ -11,19 +11,19 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog/log"
 
-	"github.com/example/cv-backend/config"
-	"github.com/example/cv-backend/internal/delivery/http/handler"
-	mw "github.com/example/cv-backend/internal/delivery/http/middleware"
-	"github.com/example/cv-backend/internal/delivery/http/route"
-	"github.com/example/cv-backend/internal/domain/entity"
-	dbrepo "github.com/example/cv-backend/internal/repository/db"
-	"github.com/example/cv-backend/internal/usecase"
-	pkgauth "github.com/example/cv-backend/pkg/auth"
-	"github.com/example/cv-backend/pkg/database"
-	applogger "github.com/example/cv-backend/pkg/logger"
-	"github.com/example/cv-backend/pkg/observability"
-	"github.com/example/cv-backend/pkg/storage"
-	"github.com/example/cv-backend/pkg/validator"
+	"github.com/example/wapcv/config"
+	"github.com/example/wapcv/internal/delivery/http/handler"
+	mw "github.com/example/wapcv/internal/delivery/http/middleware"
+	"github.com/example/wapcv/internal/delivery/http/route"
+	"github.com/example/wapcv/internal/domain/entity"
+	dbrepo "github.com/example/wapcv/internal/repository/db"
+	"github.com/example/wapcv/internal/usecase"
+	pkgauth "github.com/example/wapcv/pkg/auth"
+	"github.com/example/wapcv/pkg/database"
+	applogger "github.com/example/wapcv/pkg/logger"
+	"github.com/example/wapcv/pkg/observability"
+	"github.com/example/wapcv/pkg/storage"
+	"github.com/example/wapcv/pkg/validator"
 )
 
 const version = "1.0.0"
@@ -75,6 +75,9 @@ func main() {
 	}
 
 	// JWT config
+	if len(cfg.JWT.Secret) < 32 {
+		log.Fatal().Msg("JWT_SECRET must be at least 32 characters — set it in .env or environment")
+	}
 	jwtCfg := &pkgauth.Config{
 		Secret:   cfg.JWT.Secret,
 		Issuer:   cfg.JWT.Issuer,

@@ -7,9 +7,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 
-	"github.com/example/cv-backend/internal/usecase"
-	pkgauth "github.com/example/cv-backend/pkg/auth"
-	"github.com/example/cv-backend/pkg/response"
+	"github.com/example/wapcv/internal/usecase"
+	pkgauth "github.com/example/wapcv/pkg/auth"
+	"github.com/example/wapcv/pkg/response"
 )
 
 type CvHandler struct {

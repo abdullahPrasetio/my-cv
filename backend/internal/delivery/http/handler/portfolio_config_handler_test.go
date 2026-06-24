@@ -12,10 +12,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/example/cv-backend/internal/delivery/http/handler"
-	"github.com/example/cv-backend/internal/domain/entity"
-	"github.com/example/cv-backend/internal/usecase"
-	"github.com/example/cv-backend/pkg/validator"
+	"github.com/example/wapcv/internal/delivery/http/handler"
+	"github.com/example/wapcv/internal/domain/entity"
+	"github.com/example/wapcv/internal/usecase"
+	"github.com/example/wapcv/pkg/validator"
 )
 
 // mockPortfolioConfigUC is a simple struct-based mock for usecase.PortfolioConfigUseCase.

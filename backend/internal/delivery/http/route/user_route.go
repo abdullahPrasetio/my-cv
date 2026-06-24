@@ -3,7 +3,7 @@ package route
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/example/cv-backend/internal/delivery/http/handler"
+	"github.com/example/wapcv/internal/delivery/http/handler"
 )
 
 func RegisterUserRoutes(router fiber.Router, h *handler.UserHandler) {

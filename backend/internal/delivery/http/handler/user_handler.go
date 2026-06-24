@@ -5,9 +5,9 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/example/cv-backend/internal/usecase"
-	"github.com/example/cv-backend/pkg/response"
-	"github.com/example/cv-backend/pkg/validator"
+	"github.com/example/wapcv/internal/usecase"
+	"github.com/example/wapcv/pkg/response"
+	"github.com/example/wapcv/pkg/validator"
 )
 
 type UserHandler struct {

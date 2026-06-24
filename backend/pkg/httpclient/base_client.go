@@ -13,8 +13,8 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 
-	"github.com/example/cv-backend/pkg/journal"
-	applogger "github.com/example/cv-backend/pkg/logger"
+	"github.com/example/wapcv/pkg/journal"
+	applogger "github.com/example/wapcv/pkg/logger"
 )
 
 type ctxKey int

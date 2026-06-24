@@ -1,6 +1,6 @@
 # cv-backend
 
-A microservice built with [wapgo](https://github.com/example/cv-backend) — Clean Architecture, ENV-first config, and built-in observability.
+A microservice built with [wapgo](https://github.com/example/wapcv) — Clean Architecture, ENV-first config, and built-in observability.
 
 ## Quick start
 
@@ -103,5 +103,5 @@ Key variables:
 ## Module
 
 ```
-github.com/example/cv-backend
+github.com/example/wapcv
 ```

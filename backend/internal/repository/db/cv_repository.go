@@ -9,8 +9,8 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/example/cv-backend/internal/domain/entity"
-	domainrepo "github.com/example/cv-backend/internal/domain/repository"
+	"github.com/example/wapcv/internal/domain/entity"
+	domainrepo "github.com/example/wapcv/internal/domain/repository"
 )
 
 type cvRepository struct {

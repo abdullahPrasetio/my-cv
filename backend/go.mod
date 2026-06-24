@@ -1,4 +1,4 @@
-module github.com/example/cv-backend
+module github.com/example/wapcv
 
 go 1.25.0
 
