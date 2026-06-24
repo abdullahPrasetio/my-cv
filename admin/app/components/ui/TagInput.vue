@@ -24,13 +24,23 @@ const onKeydown = (e: KeyboardEvent) => {
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-1.5 bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 min-h-[42px] focus-within:border-blue-500 transition-colors">
+  <div class="flex flex-wrap gap-1.5 min-h-10.5
+              bg-white border border-slate-300 rounded-xl px-3 py-2
+              dark:bg-slate-800 dark:border-slate-600
+              focus-within:border-blue-500 dark:focus-within:border-blue-500
+              transition-colors">
     <span v-for="(tag, i) in modelValue" :key="i"
-      class="flex items-center gap-1 px-2 py-0.5 bg-blue-600/30 text-blue-300 text-xs rounded-full">
+      class="flex items-center gap-1 px-2.5 py-0.5
+             bg-blue-100 text-blue-700 border border-blue-200
+             dark:bg-blue-600/30 dark:text-blue-300 dark:border-transparent
+             text-xs rounded-full font-medium">
       {{ tag }}
-      <button type="button" @click="remove(i)" class="hover:text-red-400 leading-none">×</button>
+      <button type="button" @click="remove(i)"
+        class="hover:text-red-500 dark:hover:text-red-400 leading-none ml-0.5 transition-colors">×</button>
     </span>
     <input v-model="input" @keydown="onKeydown" placeholder="Ketik + Enter"
-      class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-100 outline-none placeholder-slate-500" />
+      class="flex-1 min-w-[80px] bg-transparent text-sm outline-none
+             text-slate-900 dark:text-slate-100
+             placeholder-slate-400 dark:placeholder-slate-500" />
   </div>
 </template>

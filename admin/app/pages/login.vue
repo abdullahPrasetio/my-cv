@@ -1,13 +1,20 @@
 <script setup lang="ts">
+import { reactive, ref, onMounted } from 'vue'
+import { useTheme } from '../composables/useTheme'
+import { useAuth } from '../composables/useAuth'
+
 definePageMeta({ layout: false })
 
 const { login, isLoggedIn } = useAuth()
+const { init } = useTheme()
 const { error } = useToast()
 
 if (isLoggedIn.value) navigateTo('/dashboard')
 
 const form = reactive({ email: '', password: '' })
 const loading = ref(false)
+
+onMounted(() => init())
 
 const onSubmit = async () => {
   loading.value = true
@@ -23,29 +30,33 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+  <div class="min-h-screen app-shell flex items-center justify-center p-4">
     <div class="w-full max-w-sm">
-      <h1 class="text-2xl font-bold text-white mb-2 text-center">CV Admin</h1>
-      <p class="text-slate-400 text-sm text-center mb-8">Masuk ke panel admin</p>
-
-      <form @submit.prevent="onSubmit" class="bg-slate-900 border border-slate-700/50 rounded-2xl p-6 space-y-4">
+      <!-- Brand -->
+      <div class="flex items-center justify-center gap-2.5 mb-8">
+        <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white text-sm font-black">CV</div>
         <div>
-          <label class="text-sm font-medium text-slate-300 mb-1.5 block">Email</label>
-          <input v-model="form.email" type="email" required
-            class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:border-blue-500 focus:outline-none" />
+          <h1 class="text-xl font-bold text-heading leading-tight">Portfolio Admin</h1>
+          <p class="text-xs text-muted">Masuk ke panel admin</p>
+        </div>
+      </div>
+
+      <form @submit.prevent="onSubmit" class="surface-card rounded-2xl p-6 space-y-4 shadow-xl shadow-black/10">
+        <div>
+          <label class="text-label">Email</label>
+          <input v-model="form.email" type="email" required placeholder="admin@email.com" class="input-field" />
         </div>
         <div>
-          <label class="text-sm font-medium text-slate-300 mb-1.5 block">Password</label>
-          <input v-model="form.password" type="password" required
-            class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:border-blue-500 focus:outline-none" />
+          <label class="text-label">Password</label>
+          <input v-model="form.password" type="password" required class="input-field" />
         </div>
         <button type="submit" :disabled="loading"
-          class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-sm font-medium rounded-lg transition-colors">
+          class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-sm font-semibold rounded-xl transition-colors shadow-sm">
           {{ loading ? 'Masuk...' : 'Masuk' }}
         </button>
-        <p class="text-center text-sm text-slate-400">
+        <p class="text-center text-sm text-muted">
           Belum punya akun?
-          <NuxtLink to="/register" class="text-blue-400 hover:text-blue-300">Daftar</NuxtLink>
+          <NuxtLink to="/register" class="text-blue-500 hover:text-blue-400 font-medium">Daftar</NuxtLink>
         </p>
       </form>
     </div>

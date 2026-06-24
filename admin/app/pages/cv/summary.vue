@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
 definePageMeta({ middleware: 'auth' })
 const { fetchCv, saveCv } = useCvApi()
 const { success, error } = useToast()
@@ -23,10 +25,10 @@ const onSave = async () => {
 </script>
 
 <template>
-  <div class="p-8 max-w-2xl">
-    <h2 class="text-2xl font-bold text-white mb-1">Summary</h2>
-    <p class="text-slate-400 text-sm mb-8">Ringkasan profesional bilingual</p>
-    <form @submit.prevent="onSave" class="bg-slate-900 border border-slate-700/50 rounded-xl p-5 space-y-4">
+  <div class="page-container max-w-2xl">
+    <h2 class="page-title">Summary</h2>
+    <p class="page-subtitle">Ringkasan profesional bilingual</p>
+    <form @submit.prevent="onSave" class="surface-card rounded-xl p-5 space-y-4">
       <UiBilingualInput label="Summary" v-model="summary" :textarea="true" :rows="6" />
       <div class="flex justify-end pt-2">
         <UiSaveButton :loading="loading" />

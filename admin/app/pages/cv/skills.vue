@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
 definePageMeta({ middleware: 'auth' })
 const { fetchCv, saveCv } = useCvApi()
 const { success, error } = useToast()
@@ -27,33 +29,37 @@ const onSave = async () => {
     success('Skills berhasil disimpan!')
   } catch { error('Gagal menyimpan') } finally { loading.value = false }
 }
-
-const inputClass = 'bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 focus:border-blue-500 focus:outline-none'
 </script>
 
 <template>
-  <div class="p-8 max-w-2xl">
-    <h2 class="text-2xl font-bold text-white mb-1">Skills</h2>
-    <p class="text-slate-400 text-sm mb-8">Kemampuan teknis dengan level 0-100</p>
+  <div class="page-container max-w-2xl">
+    <h2 class="page-title">Skills</h2>
+    <p class="page-subtitle">Kemampuan teknis dengan level 0–100</p>
 
     <form @submit.prevent="onSave" class="space-y-3">
-      <div v-for="(skill, i) in skills" :key="i"
-        class="bg-slate-900 border border-slate-700/50 rounded-xl p-4">
+      <div v-for="(skill, i) in skills" :key="i" class="surface-card rounded-xl p-4">
         <div class="flex items-center gap-3 mb-3">
-          <input v-model="skill.name" placeholder="Nama skill" :class="['flex-1', inputClass]" />
-          <span class="text-sm text-blue-400 font-bold w-8 text-right">{{ skill.level }}</span>
-          <button type="button" @click="moveUp(i)" class="text-slate-500 hover:text-slate-300 text-xs">↑</button>
-          <button type="button" @click="moveDown(i)" class="text-slate-500 hover:text-slate-300 text-xs">↓</button>
-          <button type="button" @click="remove(i)" class="text-slate-500 hover:text-red-400 text-sm transition-colors">×</button>
+          <input v-model="skill.name" placeholder="Nama skill"
+            class="flex-1 input-field-sm" />
+          <span class="text-sm text-blue-500 dark:text-blue-400 font-bold w-8 text-right shrink-0">{{ skill.level }}</span>
+          <button type="button" @click="moveUp(i)"
+            class="text-muted hover:text-body text-xs p-1 transition-colors">↑</button>
+          <button type="button" @click="moveDown(i)"
+            class="text-muted hover:text-body text-xs p-1 transition-colors">↓</button>
+          <button type="button" @click="remove(i)"
+            class="btn-danger text-base leading-none">×</button>
         </div>
-        <input type="range" v-model.number="skill.level" min="0" max="100" class="w-full accent-blue-500" />
-        <div class="mt-2 bg-slate-800 rounded-full h-1.5">
-          <div class="bg-blue-500 h-1.5 rounded-full transition-all" :style="{ width: skill.level + '%' }" />
+        <input type="range" v-model.number="skill.level" min="0" max="100" class="w-full accent-blue-500 cursor-pointer" />
+        <div class="mt-2 bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+          <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" :style="{ width: skill.level + '%' }" />
         </div>
       </div>
 
       <button type="button" @click="add"
-        class="w-full py-3 border border-dashed border-slate-600 hover:border-blue-500 text-slate-400 hover:text-blue-400 rounded-xl text-sm font-medium transition-colors">
+        class="w-full py-3 border border-dashed border-slate-300 dark:border-slate-600
+               hover:border-blue-500 dark:hover:border-blue-500
+               text-muted hover:text-blue-500 dark:hover:text-blue-400
+               rounded-xl text-sm font-medium transition-colors">
         + Tambah Skill
       </button>
       <div class="flex justify-end pt-2">

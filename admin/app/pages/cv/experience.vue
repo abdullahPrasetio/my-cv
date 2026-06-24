@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
 definePageMeta({ middleware: 'auth' })
 const { fetchCv, saveCv } = useCvApi()
 const { success, error } = useToast()
@@ -32,56 +34,59 @@ const onSave = async () => {
     success('Pengalaman berhasil disimpan!')
   } catch { error('Gagal menyimpan') } finally { loading.value = false }
 }
-
-const inputClass = 'w-full bg-slate-800 border border-slate-600 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:border-blue-500 focus:outline-none'
 </script>
 
 <template>
-  <div class="p-8 max-w-3xl">
-    <h2 class="text-2xl font-bold text-white mb-1">Pengalaman</h2>
-    <p class="text-slate-400 text-sm mb-8">Riwayat pekerjaan dengan multi-peran</p>
+  <div class="page-container max-w-3xl">
+    <h2 class="page-title">Pengalaman</h2>
+    <p class="page-subtitle">Riwayat pekerjaan dengan multi-peran</p>
 
     <form @submit.prevent="onSave" class="space-y-6">
-      <div v-for="(exp, i) in experiences" :key="i"
-        class="bg-slate-900 border border-slate-700/50 rounded-xl overflow-hidden">
-        <div class="p-5 border-b border-slate-700/50 space-y-4">
+      <div v-for="(exp, i) in experiences" :key="i" class="surface-card rounded-xl overflow-hidden">
+        <!-- Company header -->
+        <div class="p-5 border-b divider space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-white">{{ exp.company || `Perusahaan #${i + 1}` }}</span>
-            <button type="button" @click="removeExp(i)" class="text-slate-500 hover:text-red-400 text-sm">Hapus</button>
+            <span class="text-sm font-bold text-heading">{{ exp.company || `Perusahaan #${i + 1}` }}</span>
+            <button type="button" @click="removeExp(i)" class="btn-danger">Hapus</button>
           </div>
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="text-sm font-medium text-slate-300 mb-1.5 block">Nama Perusahaan</label>
-              <input v-model="exp.company" :class="inputClass" />
+              <label class="text-label">Nama Perusahaan</label>
+              <input v-model="exp.company" class="input-field" />
             </div>
             <div>
-              <label class="text-sm font-medium text-slate-300 mb-1.5 block">Periode</label>
-              <input v-model="exp.period" :class="inputClass" placeholder="Jan 2023 - Present" />
+              <label class="text-label">Periode</label>
+              <input v-model="exp.period" class="input-field" placeholder="Jan 2023 – Present" />
             </div>
           </div>
         </div>
 
-        <div class="p-5 space-y-5">
-          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Peran / Jabatan</p>
+        <!-- Roles -->
+        <div class="p-5 space-y-4">
+          <p class="nav-section-label">Peran / Jabatan</p>
           <div v-for="(role, ri) in exp.roles" :key="ri"
-            class="bg-slate-800/50 border border-slate-700 rounded-lg p-4 space-y-4">
+            class="surface-raised rounded-xl p-4 space-y-4 border border-slate-200 dark:border-slate-700">
             <div class="flex justify-between items-center">
-              <span class="text-xs text-slate-400">Peran #{{ ri + 1 }}</span>
+              <span class="text-xs text-muted font-medium">Peran #{{ ri + 1 }}</span>
               <button v-if="exp.roles.length > 1" type="button" @click="removeRole(exp, ri)"
-                class="text-slate-500 hover:text-red-400 text-xs">Hapus Peran</button>
+                class="btn-danger text-xs">Hapus Peran</button>
             </div>
             <UiBilingualInput label="Jabatan" v-model="role.title" />
             <UiBilingualInput label="Deskripsi" v-model="role.description" :textarea="true" :rows="3" />
           </div>
           <button type="button" @click="addRole(exp)"
-            class="w-full py-2.5 border border-dashed border-slate-600 hover:border-blue-500 text-slate-400 hover:text-blue-400 rounded-lg text-sm transition-colors">
+            class="w-full py-2.5 border border-dashed border-slate-300 dark:border-slate-600
+                   hover:border-blue-500 text-muted hover:text-blue-500 dark:hover:text-blue-400
+                   rounded-xl text-sm transition-colors">
             + Tambah Peran
           </button>
         </div>
       </div>
 
       <button type="button" @click="addExp"
-        class="w-full py-3 border border-dashed border-slate-600 hover:border-blue-500 text-slate-400 hover:text-blue-400 rounded-xl text-sm font-medium transition-colors">
+        class="w-full py-3 border border-dashed border-slate-300 dark:border-slate-600
+               hover:border-blue-500 text-muted hover:text-blue-500 dark:hover:text-blue-400
+               rounded-xl text-sm font-medium transition-colors">
         + Tambah Pengalaman Kerja
       </button>
       <div class="flex justify-end pt-2">

@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useRuntimeConfig } from '#imports'
+import { useAuth } from '../../composables/useAuth'
+import { useTheme } from '../../composables/useTheme'
+
+const emit = defineEmits<{ close: [] }>()
 
 const { user, logout } = useAuth()
+const { isDark, toggle } = useTheme()
 const config = useRuntimeConfig()
 const route = useRoute()
 
@@ -47,39 +53,74 @@ const navGroups = [
 ]
 
 const isActive = (path: string) => route.path === path || route.path.startsWith(path + '/')
+
+const handleLogout = () => {
+  emit('close')
+  logout()
+}
+
+const handleNav = () => emit('close')
 </script>
 
 <template>
-  <aside class="w-60 bg-[#0f1117] border-r border-white/6 flex flex-col h-screen sticky top-0 shrink-0">
-    <!-- Brand -->
-    <div class="px-5 pt-6 pb-4">
-      <div class="flex items-center gap-2.5 mb-6">
-        <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-black">CV</div>
-        <span class="text-sm font-bold text-white tracking-tight">Portfolio Admin</span>
+  <aside class="w-64 flex flex-col h-screen border-r app-sidebar divider">
+    <!-- Brand + close -->
+    <div class="px-5 pt-5 pb-4 shrink-0">
+      <div class="flex items-center gap-2.5 mb-5">
+        <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-black shrink-0">CV</div>
+        <span class="text-sm font-bold tracking-tight text-heading flex-1">Portfolio Admin</span>
+        <!-- Close button - mobile only -->
+        <button
+          class="lg:hidden p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+          @click="emit('close')"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
 
       <!-- User info -->
-      <div class="flex items-center gap-3 p-3 bg-white/[0.04] rounded-xl border border-white/6">
-        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-black shrink-0">
+      <div class="user-info-box">
+        <div class="w-9 h-9 rounded-full bg-linear-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-black shrink-0">
           {{ initials || '?' }}
         </div>
-        <div class="min-w-0">
-          <p class="text-sm font-semibold text-white truncate">{{ displayName }}</p>
-          <p class="text-[11px] text-slate-500 truncate">@{{ user?.username || '—' }}</p>
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-semibold truncate text-heading">{{ displayName }}</p>
+          <p class="text-[11px] truncate text-muted">@{{ user?.username || '—' }}</p>
         </div>
+        <!-- Theme toggle (compact, in sidebar) -->
+        <button
+          @click="toggle"
+          class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 text-slate-400 dark:text-slate-500 transition-colors shrink-0"
+          :title="isDark ? 'Light mode' : 'Dark mode'"
+        >
+          <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
       </div>
     </div>
 
     <!-- Navigation -->
     <nav class="flex-1 px-3 overflow-y-auto space-y-4 pb-4">
       <div v-for="group in navGroups" :key="group.label">
-        <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest px-2 mb-1.5">{{ group.label }}</p>
+        <p class="nav-section-label px-2 mb-1.5">{{ group.label }}</p>
         <div class="space-y-0.5">
-          <NuxtLink v-for="l in group.links" :key="l.path" :to="l.path"
-            :class="['flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150',
-              isActive(l.path)
-                ? 'bg-blue-600/15 text-blue-400 border border-blue-500/20'
-                : 'text-slate-500 hover:text-slate-200 hover:bg-white/[0.04]']">
+          <NuxtLink
+            v-for="l in group.links"
+            :key="l.path"
+            :to="l.path"
+            :class="['nav-item', isActive(l.path) ? 'nav-item-active' : '']"
+            @click="handleNav"
+          >
             <span class="shrink-0" v-html="l.icon" />
             {{ l.label }}
           </NuxtLink>
@@ -88,22 +129,31 @@ const isActive = (path: string) => route.path === path || route.path.startsWith(
     </nav>
 
     <!-- Bottom actions -->
-    <div class="p-3 border-t border-white/6 space-y-1">
-      <a :href="portfolioUrl" target="_blank"
-        class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-150 w-full">
+    <div class="p-3 border-t shrink-0 divider space-y-1">
+      <a
+        :href="portfolioUrl"
+        target="_blank"
+        class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium
+               text-slate-500 hover:text-emerald-600 hover:bg-emerald-50
+               dark:text-slate-400 dark:hover:text-emerald-400 dark:hover:bg-emerald-500/10
+               transition-all duration-150 w-full"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15 3 21 3 21 9"/>
-          <line x1="10" y1="14" x2="21" y2="3"/>
+          <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
         </svg>
         Preview Portfolio
       </a>
-      <button @click="logout"
-        class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-all duration-150 w-full">
+      <button
+        @click="handleLogout"
+        class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium
+               text-slate-500 hover:text-red-600 hover:bg-red-50
+               dark:text-slate-500 dark:hover:text-red-400 dark:hover:bg-red-500/10
+               transition-all duration-150 w-full"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-          <polyline points="16 17 21 12 16 7"/>
-          <line x1="21" y1="12" x2="9" y2="12"/>
+          <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
         </svg>
         Logout
       </button>

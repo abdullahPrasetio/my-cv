@@ -6,29 +6,32 @@ const props = defineProps<{
   rows?: number
 }>()
 const emit = defineEmits<{ 'update:modelValue': [{ en: string; id: string }] }>()
-const update = (lang: 'en' | 'id', val: string) =>
+
+const update = (lang: 'en' | 'id', e: Event) => {
+  const val = (e.target as HTMLInputElement | HTMLTextAreaElement).value
   emit('update:modelValue', { ...props.modelValue, [lang]: val })
+}
 </script>
 
 <template>
-  <div class="space-y-3">
-    <p class="text-sm font-medium text-slate-300">{{ label }}</p>
-    <div class="grid grid-cols-2 gap-3">
+  <div class="space-y-2">
+    <p class="text-sm font-medium text-body">{{ label }}</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
       <div>
-        <label class="text-xs text-slate-500 mb-1 block">EN</label>
-        <textarea v-if="textarea" :value="modelValue.en" @input="update('en', ($event.target as HTMLTextAreaElement).value)"
+        <label class="text-xs text-muted mb-1 block font-medium">🇺🇸 English</label>
+        <textarea v-if="textarea" :value="modelValue.en" @input="update('en', $event)"
           :rows="rows || 3"
-          class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 focus:border-blue-500 focus:outline-none resize-none" />
-        <input v-else :value="modelValue.en" @input="update('en', ($event.target as HTMLInputElement).value)"
-          class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 focus:border-blue-500 focus:outline-none" />
+          class="w-full input-field-sm resize-none" />
+        <input v-else :value="modelValue.en" @input="update('en', $event)"
+          class="w-full input-field-sm" />
       </div>
       <div>
-        <label class="text-xs text-slate-500 mb-1 block">ID</label>
-        <textarea v-if="textarea" :value="modelValue.id" @input="update('id', ($event.target as HTMLTextAreaElement).value)"
+        <label class="text-xs text-muted mb-1 block font-medium">🇮🇩 Indonesia</label>
+        <textarea v-if="textarea" :value="modelValue.id" @input="update('id', $event)"
           :rows="rows || 3"
-          class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 focus:border-blue-500 focus:outline-none resize-none" />
-        <input v-else :value="modelValue.id" @input="update('id', ($event.target as HTMLInputElement).value)"
-          class="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100 focus:border-blue-500 focus:outline-none" />
+          class="w-full input-field-sm resize-none" />
+        <input v-else :value="modelValue.id" @input="update('id', $event)"
+          class="w-full input-field-sm" />
       </div>
     </div>
   </div>
