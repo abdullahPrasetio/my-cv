@@ -8,6 +8,11 @@ import PortofolioV7 from './pages/v7/PortofolioV7';
 import PortofolioV8 from './pages/v8/PortofolioV8';
 import PortofolioV9 from './pages/v9/PortofolioV9';
 import PortofolioV10 from './pages/v10/PortofolioV10';
+import PortofolioV11 from './pages/v11/PortofolioV11';
+import PortofolioV12 from './pages/v12/PortofolioV12';
+import PortofolioV13 from './pages/v13/PortofolioV13';
+import PortofolioV14 from './pages/v14/PortofolioV14';
+import PortofolioV15 from './pages/v15/PortofolioV15';
 
 export const portofolioVersions = {
   v1: PortofolioV1,
@@ -20,6 +25,11 @@ export const portofolioVersions = {
   v8: PortofolioV8,
   v9: PortofolioV9,
   v10: PortofolioV10,
+  v11: PortofolioV11,
+  v12: PortofolioV12,
+  v13: PortofolioV13,
+  v14: PortofolioV14,
+  v15: PortofolioV15,
 };
 
 export const defaultVersionKey = process.env.VITE_DEFAULT_VERSION || 'v2';

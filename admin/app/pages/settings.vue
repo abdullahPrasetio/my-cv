@@ -11,7 +11,7 @@ const config = useRuntimeConfig()
 
 const activeVersion = ref('v1')
 const loading = ref(false)
-const versions = Array.from({ length: 10 }, (_, i) => `v${i + 1}`)
+const versions = Array.from({ length: 15 }, (_, i) => `v${i + 1}`)
 
 const username = computed(() => (user.value as any)?.username || '')
 const portfolioUrl = computed(() => config.public.portfolioUrl as string)
