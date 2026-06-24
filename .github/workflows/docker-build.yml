@@ -16,15 +16,15 @@ jobs:
         include:
           - service: backend
             context: ./backend
-            image: cv-backend
+            image: my-cv-api
 
           - service: admin
             context: ./admin
-            image: cv-admin
+            image: my-cv-admin
 
           - service: portfolio
             context: ./portfolio
-            image: cv-portfolio
+            image: my-cv
             build-args: VITE_API_URL=/api/v1
 
     steps:
