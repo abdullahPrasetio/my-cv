@@ -43,3 +43,6 @@ admin/.cache/
 # Cloudflare credentials (jangan commit!)
 cloudflared/creds.json
 cloudflared/*.json
+
+# Local deploy config
+docker-compose.casaos.yml
