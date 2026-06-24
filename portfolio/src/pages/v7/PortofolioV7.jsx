@@ -201,9 +201,11 @@ const PortofolioV7 = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
                       <div className="flex gap-4">
-                        <a href={project.link} target="_blank" className="p-3 bg-white/20 backdrop-blur-md rounded-full hover:bg-purple-500 transition-colors">
-                          <ExternalLink size={20} />
-                        </a>
+                        {project.link && (
+                          <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/20 backdrop-blur-md rounded-full hover:bg-purple-500 transition-colors">
+                            <ExternalLink size={20} />
+                          </a>
+                        )}
                         <a href="#" className="p-3 bg-white/20 backdrop-blur-md rounded-full hover:bg-purple-500 transition-colors">
                           <Github size={20} />
                         </a>

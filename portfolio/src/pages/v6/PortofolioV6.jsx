@@ -104,13 +104,16 @@ const PortofolioV6 = () => {
           <div className="grid md:grid-cols-2 gap-16 md:gap-24">
             {(cvData.projects || []).map((project, i) => {
               const [imgError, setImgError] = useState(false);
+                const Tag = project.link ? motion.a : motion.div;
+                const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
               return (
-                <motion.div 
+                <Tag
+                  {...linkProps}
                   key={i}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className={`group border-4 p-4 md:p-8 flex flex-col ${brutalShadowLarge} ${brutalBorder} hover:-translate-y-4 hover:translate-x-4 transition-all duration-300 ${theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-[#f4f4f0]'}`}
+                  className={`group border-4 p-4 md:p-8 flex flex-col ${brutalShadowLarge} ${brutalBorder} hover:-translate-y-4 hover:translate-x-4 transition-all duration-300 ${theme === 'dark' ? 'bg-[#1a1a1a]' : 'bg-[#f4f4f0]'}${project.link ? ' cursor-pointer' : ''}`}
                 >
                   <div className={`w-full aspect-video border-4 mb-8 overflow-hidden relative ${brutalBorder} bg-[#ffce54]`}>
                     {!imgError ? (
@@ -135,7 +138,7 @@ const PortofolioV6 = () => {
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                </Tag>
               );
             })}
           </div>

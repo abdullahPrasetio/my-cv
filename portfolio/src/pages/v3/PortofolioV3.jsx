@@ -22,7 +22,12 @@ const GlassCard = ({ children, className = "", delay = 0 }) => (
 
 const ProjectCard = ({ project, lang }) => {
   const [projImgError, setProjImgError] = useState(false);
+  const Wrapper = project.link ? 'a' : 'div';
+  const wrapperProps = project.link
+    ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' }
+    : {};
   return (
+    <Wrapper {...wrapperProps} className={project.link ? 'block cursor-pointer' : 'block'}>
     <GlassCard className="group overflow-hidden p-0">
       <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
         {!projImgError ? (
@@ -55,6 +60,7 @@ const ProjectCard = ({ project, lang }) => {
         </div>
       </div>
     </GlassCard>
+    </Wrapper>
   );
 };
 

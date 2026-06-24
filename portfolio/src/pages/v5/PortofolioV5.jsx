@@ -153,8 +153,11 @@ const PortofolioV5 = () => {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl font-mono">
                 <div className="text-[#569cd6] mb-8 text-base md:text-lg">const <span className="text-[#4fc1ff]">featuredProjects</span> = [</div>
                 <div className="space-y-10 pl-6 border-l-2 border-[#333333] ml-2">
-                  {(cvData.projects || []).map((project, i) => (
-                    <div key={i} className="relative group">
+                  {(cvData.projects || []).map((project, i) => {
+                    const Tag = project.link ? 'a' : 'div';
+                    const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
+                    return (
+                    <Tag {...linkProps} key={i} className={`relative group block${project.link ? ' cursor-pointer' : ''}`}>
                       <div className="absolute -left-[31px] top-2 w-4 h-4 rounded-full bg-[#1e1e1e] border-2 border-[#569cd6] group-hover:bg-[#569cd6] transition-colors"></div>
                       <div className="text-[#c586c0] font-bold">{`{`}</div>
                       <div className="pl-6 space-y-2 py-2 border-l border-[#333333]/30">
@@ -169,8 +172,9 @@ const PortofolioV5 = () => {
                         </div>
                       </div>
                       <div className="text-[#c586c0] font-bold">{`}`}{i < cvData.projects.length - 1 ? ',' : ''}</div>
-                    </div>
-                  ))}
+                    </Tag>
+                    );
+                  })}
                 </div>
                 <div className="text-[#569cd6] mt-8 text-base md:text-lg">];</div>
               </motion.div>

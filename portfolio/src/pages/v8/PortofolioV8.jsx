@@ -150,8 +150,11 @@ const PortofolioV8 = () => {
             [ STAGE SELECT ]
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
-            {(cvData.projects || []).map((project, i) => (
-              <div key={i} className="group cursor-pointer">
+            {(cvData.projects || []).map((project, i) => {
+              const Tag = project.link ? 'a' : 'div';
+              const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
+              return (
+              <Tag {...linkProps} key={i} className={`group${project.link ? ' cursor-pointer' : ''}`}>
                 <RetroBlock color={i % 2 === 0 ? "magenta" : "cyan"} className="p-0 overflow-hidden">
                   <div className="aspect-video relative overflow-hidden border-b-4 border-inherit">
                     <img 
@@ -180,8 +183,9 @@ const PortofolioV8 = () => {
                     </div>
                   </div>
                 </RetroBlock>
-              </div>
-            ))}
+              </Tag>
+              );
+            })}
           </div>
         </div>
       </section>

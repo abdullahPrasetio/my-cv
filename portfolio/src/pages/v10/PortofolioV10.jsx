@@ -184,8 +184,11 @@ const PortofolioV10 = () => {
           {/* 5. Projects Slide */}
           <Section title="04. Gallery" subtitle="Featured Works">
             <div className="flex gap-8 md:gap-12 overflow-x-auto pb-12 no-scrollbar">
-              {(cvData.projects || []).map((project, i) => (
-                <div key={i} className="min-w-[280px] md:min-w-[600px] group">
+              {(cvData.projects || []).map((project, i) => {
+                const Tag = project.link ? 'a' : 'div';
+                const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
+                return (
+                <Tag {...linkProps} key={i} className={`min-w-70 md:min-w-150 group${project.link ? ' cursor-pointer' : ''}`}>
                   <div className="aspect-video rounded-[24px] md:rounded-[40px] overflow-hidden mb-4 md:mb-8 relative">
                     <img 
                       src={project.image} 
@@ -205,8 +208,9 @@ const PortofolioV10 = () => {
                     {project.name} <ArrowRight className="w-4 h-4 md:w-8 md:h-8 opacity-0 group-hover:opacity-100 transition-all" />
                   </h3>
                   <p className="text-sm md:text-lg opacity-60 line-clamp-2 max-w-xl">{project.description[lang]}</p>
-                </div>
-              ))}
+                </Tag>
+                );
+              })}
             </div>
           </Section>
 

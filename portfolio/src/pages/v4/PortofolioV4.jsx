@@ -134,13 +134,16 @@ const PortofolioV4 = () => {
             <div className="space-y-24">
               {(cvData.projects || []).map((project, i) => {
                 const [imgError, setImgError] = useState(false);
+                const Tag = project.link ? motion.a : motion.div;
+                const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
                 return (
-                  <motion.div 
+                  <Tag
+                    {...linkProps}
                     key={i}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="group"
+                    className={`group block${project.link ? ' cursor-pointer' : ''}`}
                   >
                     <div className="relative aspect-video overflow-hidden rounded-3xl bg-slate-100 dark:bg-slate-900 mb-8">
                       {!imgError ? (
@@ -171,7 +174,7 @@ const PortofolioV4 = () => {
                       </div>
                       <ExternalLink size={32} className="text-slate-200 group-hover:text-primary transition-colors duration-500" />
                     </div>
-                  </motion.div>
+                  </Tag>
                 );
               })}
             </div>

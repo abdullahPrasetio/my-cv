@@ -67,13 +67,17 @@ const PortofolioV9 = () => {
             Work Archive / {cvData.projects?.length ?? 0} Entries
           </h2>
           <div className="space-y-0">
-            {(cvData.projects || []).map((project, i) => (
-              <motion.div 
+            {(cvData.projects || []).map((project, i) => {
+              const Tag = project.link ? motion.a : motion.div;
+              const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
+              return (
+              <Tag
+                {...linkProps}
                 key={i}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="group grid md:grid-cols-12 gap-8 py-12 border-b border-current hover:bg-current hover:text-white dark:hover:text-black transition-colors duration-500 cursor-pointer"
+                className={`group grid md:grid-cols-12 gap-8 py-12 border-b border-current hover:bg-current hover:text-white dark:hover:text-black transition-colors duration-500${project.link ? ' cursor-pointer' : ''}`}
               >
                 <div className="md:col-span-1 text-sm font-bold opacity-30">0{i + 1}</div>
                 <div className="md:col-span-6">
@@ -92,15 +96,16 @@ const PortofolioV9 = () => {
                 <div className="md:col-span-1 flex items-center justify-end">
                   <ArrowRight className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500" />
                 </div>
-              </motion.div>
-            ))}
+              </Tag>
+              );
+            })}
           </div>
         </section>
 
         {/* Visual Break - Large Avatar */}
         {cvData.is_avatar && cvData.avatar && !avatarError && (
           <section className="mb-48">
-            <div className="aspect-[21/9] overflow-hidden grayscale">
+            <div className="aspect-21/9 overflow-hidden grayscale">
               <motion.img 
                 initial={{ scale: 1.2 }}
                 whileInView={{ scale: 1 }}

@@ -130,11 +130,15 @@ const PortofolioV2 = () => {
       <section className="py-32 px-6 md:px-24 bg-white dark:bg-slate-900/50">
         <h2 className="text-xs uppercase tracking-[0.5em] text-slate-400 mb-20 text-center font-bold">Featured Projects</h2>
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {(cvData.projects || []).map((project, i) => (
-            <motion.div
+          {(cvData.projects || []).map((project, i) => {
+            const Tag = project.link ? motion.a : motion.div;
+            const linkProps = project.link ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' } : {};
+            return (
+            <Tag
+              {...linkProps}
               key={i}
               whileHover={{ y: -10 }}
-              className="group relative bg-slate-50 dark:bg-slate-900 rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/5 border border-slate-100 dark:border-slate-800"
+              className={`group relative bg-slate-50 dark:bg-slate-900 rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/5 border border-slate-100 dark:border-slate-800 block${project.link ? ' cursor-pointer' : ''}`}
             >
               <div className="aspect-video overflow-hidden">
                 <img 
@@ -159,8 +163,9 @@ const PortofolioV2 = () => {
                   ))}
                 </div>
               </div>
-            </motion.div>
-          ))}
+            </Tag>
+            );
+          })}
         </div>
       </section>
 
