@@ -64,10 +64,10 @@ const PortofolioV9 = () => {
         {/* Projects Archive */}
         <section className="mb-48">
           <h2 className="text-xs font-bold uppercase tracking-widest opacity-50 mb-12 py-4 border-b border-current">
-            Work Archive / {cvData.projects.length} Entries
+            Work Archive / {cvData.projects?.length ?? 0} Entries
           </h2>
           <div className="space-y-0">
-            {cvData.projects.map((project, i) => (
+            {(cvData.projects || []).map((project, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0 }}
@@ -121,7 +121,7 @@ const PortofolioV9 = () => {
               Core Expertise
             </div>
             <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
-              {cvData.skills.map((skill, i) => (
+              {(cvData.skills || []).map((skill, i) => (
                 <div key={i}>
                   <div className="text-[10px] font-bold opacity-30 mb-2">/0{i + 1}</div>
                   <div className="text-xl md:text-3xl font-bold uppercase tracking-tighter">{skill.name}</div>
@@ -137,13 +137,13 @@ const PortofolioV9 = () => {
             Career Journey
           </h2>
           <div className="space-y-24">
-            {cvData.experience.map((exp, i) => (
+            {(cvData.experience || []).map((exp, i) => (
               <div key={i} className="grid md:grid-cols-12 gap-8">
                 <div className="md:col-span-4 text-2xl font-bold">{exp.period}</div>
                 <div className="md:col-span-8">
-                  <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tighter mb-4">{exp.roles[0].title[lang]}</h3>
+                  <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tighter mb-4">{exp.roles?.[0]?.title?.[lang]}</h3>
                   <div className="text-xl opacity-50 font-bold uppercase mb-8">{exp.company}</div>
-                  <p className="text-xl max-w-2xl leading-snug">{exp.roles[0].description[lang]}</p>
+                  <p className="text-xl max-w-2xl leading-snug">{exp.roles?.[0]?.description?.[lang]}</p>
                 </div>
               </div>
             ))}

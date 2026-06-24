@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="980" viewBox="0 0 1680 980" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="blueBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f9be0"/>
+      <stop offset="1" stop-color="#1c7ed1"/>
+    </linearGradient>
+    <linearGradient id="phoneScreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3aa0e6"/>
+      <stop offset="1" stop-color="#1f86d6"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9a3c"/>
+      <stop offset="1" stop-color="#f47b20"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#0b3a66" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1680" height="980" fill="#1d2430"/>
+  <rect y="278" width="1680" height="702" fill="url(#blueBg)"/>
+
+  <!-- Decorative circles -->
+  <g opacity="0.85">
+    <circle cx="470" cy="318" r="46" fill="url(#orange)"/>
+    <circle cx="1420" cy="318" r="42" fill="url(#orange)"/>
+    <circle cx="520" cy="470" r="22" fill="none" stroke="#bfe0f7" stroke-width="9"/>
+    <circle cx="1230" cy="500" r="16" fill="none" stroke="#bfe0f7" stroke-width="8"/>
+    <ellipse cx="430" cy="720" rx="150" ry="120" fill="#f4881f" opacity="0.55"/>
+    <ellipse cx="900" cy="740" rx="170" ry="120" fill="#f4881f" opacity="0.45"/>
+    <ellipse cx="1330" cy="730" rx="150" ry="120" fill="#f4881f" opacity="0.5"/>
+    <circle cx="760" cy="640" r="120" fill="#56b0ea" opacity="0.4"/>
+    <circle cx="1150" cy="650" r="120" fill="#56b0ea" opacity="0.35"/>
+  </g>
+
+  <!-- Top-left logo -->
+  <g transform="translate(70,318)">
+    <text x="0" y="0" font-size="30" font-weight="700" fill="#ffffff">BRI<tspan font-weight="400">merchant</tspan></text>
+    <text x="0" y="70" font-size="20" font-weight="700" fill="#ffffff">One Stop App Solution,</text>
+    <text x="0" y="98" font-size="18" fill="#eaf4fd">yang dapat menjawab</text>
+    <text x="0" y="124" font-size="18" fill="#eaf4fd">semua kebutuhan</text>
+    <text x="0" y="150" font-size="18" fill="#eaf4fd">Merchant</text>
+  </g>
+
+  <!-- Headings -->
+  <g fill="#ffffff" font-size="20" font-weight="700">
+    <text x="265" y="360">Monitoring Transaksi</text>
+    <text x="265" y="386" fill="#ffffff">Secara Langsung</text>
+    <text x="265" y="412">(Real-Time)</text>
+
+    <text x="540" y="360">Tampil dan</text>
+    <text x="540" y="386" fill="#ffd089">Download QRIS</text>
+    <text x="540" y="412" fill="#ffffff">Merchant BRI</text>
+
+    <text x="758" y="360">Pengecekan</text>
+    <text x="758" y="386">Setiap <tspan fill="#ffd089">Detail Transaksi</tspan></text>
+    <text x="758" y="412">Merchant Anda</text>
+
+    <text x="1005" y="360">Download</text>
+    <text x="1005" y="386" fill="#ffd089">Report Settlement</text>
+    <text x="1005" y="412" fill="#ffffff">Harian Anda</text>
+
+    <text x="1258" y="360">Atur <tspan fill="#ffd089">Karyawan</tspan> Anda</text>
+    <text x="1258" y="386">di User Management</text>
+  </g>
+
+  <!-- Phone template via reuse -->
+  <g filter="url(#cardShadow)">
+    <!-- Phone 1 -->
+    <g transform="translate(285,455)">
+      <rect width="160" height="320" rx="22" fill="#ffffff"/>
+      <rect x="8" y="8" width="144" height="304" rx="16" fill="url(#phoneScreen)"/>
+      <rect x="20" y="120" width="120" height="170" rx="10" fill="#ffffff"/>
+      <rect x="30" y="135" width="80" height="10" rx="5" fill="#1f86d6"/>
+      <rect x="30" y="155" width="100" height="22" rx="5" fill="#e8f3fc"/>
+      <rect x="30" y="185" width="100" height="34" rx="6" fill="#1f86d6"/>
+      <rect x="30" y="227" width="100" height="34" rx="6" fill="#1f86d6"/>
+      <text x="80" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">BRImerchant</text>
+    </g>
+
+    <!-- Phone 2 (QRIS) -->
+    <g transform="translate(515,460) rotate(4)">
+      <rect width="150" height="310" rx="22" fill="#ffffff" opacity="0.92"/>
+      <rect x="8" y="8" width="134" height="294" rx="16" fill="#eef6fc"/>
+      <rect x="22" y="40" width="106" height="14" rx="4" fill="#cfe4f5"/>
+      <rect x="22" y="70" width="106" height="40" rx="6" fill="#dcebf8"/>
+      <rect x="22" y="120" width="106" height="40" rx="6" fill="#e7f1fb"/>
+      <rect x="22" y="170" width="106" height="40" rx="6" fill="#e7f1fb"/>
+    </g>
+    <!-- QR floating -->
+    <g transform="translate(560,488)">
+      <rect width="110" height="110" rx="14" fill="#ffffff"/>
+      <g transform="translate(15,15)" fill="#1f86d6">
+        <rect width="26" height="26"/><rect x="54" width="26" height="26"/><rect y="54" width="26" height="26"/>
+        <rect x="34" y="14" width="10" height="10"/><rect x="44" y="40" width="12" height="12"/>
+        <rect x="60" y="54" width="10" height="10"/><rect x="40" y="64" width="10" height="10"/><rect x="64" y="70" width="10" height="10"/>
+      </g>
+    </g>
+
+    <!-- Phone 3 (Transaksi) -->
+    <g transform="translate(760,455)">
+      <rect width="155" height="320" rx="22" fill="#ffffff"/>
+      <rect x="8" y="8" width="139" height="304" rx="16" fill="#f4f9fd"/>
+      <text x="77" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f86d6">Daftar Transaksi</text>
+      <rect x="20" y="60" width="115" height="40" rx="8" fill="#ffffff" stroke="#e3eef7"/>
+      <rect x="20" y="110" width="115" height="48" rx="8" fill="#ffffff" stroke="#e3eef7"/>
+      <rect x="20" y="168" width="115" height="48" rx="8" fill="#ffffff" stroke="#e3eef7"/>
+      <rect x="20" y="226" width="115" height="48" rx="8" fill="#ffffff" stroke="#e3eef7"/>
+      <text x="120" y="142" text-anchor="end" font-size="8" font-weight="700" fill="#2aa66a">Berhasil</text>
+      <text x="120" y="200" text-anchor="end" font-size="8" font-weight="700" fill="#2aa66a">Berhasil</text>
+    </g>
+
+    <!-- Phone 4 (Settlement) -->
+    <g transform="translate(1005,455)">
+      <rect width="155" height="320" rx="22" fill="#ffffff"/>
+      <rect x="8" y="8" width="139" height="304" rx="16" fill="#ffffff"/>
+      <text x="77" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f86d6">Laporan</text>
+      <rect x="22" y="60" width="111" height="12" rx="4" fill="#cfe4f5"/>
+      <rect x="22" y="84" width="111" height="26" rx="6" fill="#eef6fc"/>
+      <rect x="22" y="120" width="111" height="26" rx="6" fill="#eef6fc"/>
+      <rect x="22" y="160" width="111" height="14" rx="4" fill="#cfe4f5"/>
+      <rect x="22" y="262" width="111" height="30" rx="8" fill="#1f86d6"/>
+      <text x="77" y="282" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">Download Settlement</text>
+    </g>
+
+    <!-- Phone 5 (User Management) -->
+    <g transform="translate(1255,455)">
+      <rect width="160" height="320" rx="22" fill="#ffffff"/>
+      <rect x="8" y="8" width="144" height="304" rx="16" fill="#f4f9fd"/>
+      <text x="80" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1f86d6">User Manajemen</text>
+      <rect x="20" y="56" width="120" height="20" rx="10" fill="#ffffff" stroke="#e3eef7"/>
+      <g>
+        <g transform="translate(20,86)"><rect width="120" height="48" rx="8" fill="#ffffff" stroke="#e3eef7"/><circle cx="22" cy="24" r="13" fill="#1f86d6"/><text x="22" y="28" text-anchor="middle" font-size="8" fill="#fff">JF</text></g>
+        <g transform="translate(20,142)"><rect width="120" height="48" rx="8" fill="#ffffff" stroke="#e3eef7"/><circle cx="22" cy="24" r="13" fill="#1f86d6"/><text x="22" y="28" text-anchor="middle" font-size="8" fill="#fff">JF</text></g>
+        <g transform="translate(20,198)"><rect width="120" height="48" rx="8" fill="#ffffff" stroke="#e3eef7"/><circle cx="22" cy="24" r="13" fill="#1f86d6"/><text x="22" y="28" text-anchor="middle" font-size="8" fill="#fff">JF</text></g>
+        <g transform="translate(20,254)"><rect width="120" height="48" rx="8" fill="#ffffff" stroke="#e3eef7"/><circle cx="22" cy="24" r="13" fill="#1f86d6"/><text x="22" y="28" text-anchor="middle" font-size="8" fill="#fff">JF</text></g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right BRI merchant logo + person -->
+  <g transform="translate(1490,360)">
+    <rect width="120" height="64" rx="12" fill="#ffffff"/>
+    <text x="60" y="34" text-anchor="middle" font-size="26" font-weight="800" fill="#1f63b0">BRI</text>
+    <text x="60" y="52" text-anchor="middle" font-size="13" font-weight="600" fill="#f47b20">merchant</text>
+    <text x="0" y="100" font-size="16" font-weight="600" fill="#ffffff">Unduh dan Kelola</text>
+    <text x="0" y="122" font-size="16" font-weight="600" fill="#ffffff">Merchant Anda</text>
+  </g>
+
+  <!-- Simple person illustration -->
+  <g transform="translate(1500,560)">
+    <ellipse cx="70" cy="210" rx="80" ry="22" fill="#0b3a66" opacity="0.15"/>
+    <rect x="35" y="80" width="70" height="110" rx="24" fill="#1f86d6"/>
+    <circle cx="70" cy="48" r="30" fill="#f6c79a"/>
+    <path d="M42 40 q28 -34 56 0 v-10 q-28 -28 -56 0 z" fill="#3a2a22"/>
+    <rect x="36" y="120" width="20" height="60" rx="10" fill="#f6c79a"/>
+    <rect x="100" y="120" width="18" height="55" rx="9" fill="#f6c79a"/>
+    <rect x="92" y="150" width="34" height="50" rx="6" fill="#173a55"/>
+    <circle cx="109" cy="172" r="6" fill="#ffd089"/>
+  </g>
+</svg>

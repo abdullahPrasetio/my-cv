@@ -132,7 +132,7 @@ const PortofolioV3 = () => {
             {t('nav.skills')}
           </h2>
           <div className="flex flex-wrap gap-2">
-            {cvData.skills.map((skill, i) => (
+            {(cvData.skills || []).map((skill, i) => (
               <span key={i} className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-[11px] font-bold uppercase tracking-wider">
                 {skill.name}
               </span>
@@ -167,7 +167,7 @@ const PortofolioV3 = () => {
                 <div className="flex-none w-1 rounded-full bg-slate-200 dark:bg-slate-800 group-hover:bg-amber-500 transition-colors"></div>
                 <div>
                   <h3 className="font-bold text-sm">{exp.company}</h3>
-                  <p className="text-xs text-amber-600 dark:text-amber-400 font-bold uppercase tracking-widest mt-0.5">{exp.roles[0].title[lang]}</p>
+                  <p className="text-xs text-amber-600 dark:text-amber-400 font-bold uppercase tracking-widest mt-0.5">{exp.roles?.[0]?.title?.[lang]}</p>
                 </div>
               </div>
             ))}
@@ -176,7 +176,7 @@ const PortofolioV3 = () => {
 
         {/* Projects Grid */}
         <div className="md:col-span-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-2">
-          {cvData.projects.map((project, i) => (
+          {(cvData.projects || []).map((project, i) => (
             <ProjectCard key={i} project={project} lang={lang} />
           ))}
         </div>
@@ -190,7 +190,7 @@ const PortofolioV3 = () => {
             Education
           </h2>
           <div className="space-y-4">
-            {cvData.education.map((edu, i) => (
+            {(cvData.education || []).map((edu, i) => (
               <div key={i}>
                 <h3 className="font-bold text-sm">{edu.institution}</h3>
                 <p className="text-xs text-slate-500">{edu.degree} • {edu.period}</p>

@@ -102,7 +102,7 @@ const PortofolioV6 = () => {
             <span>WORKS</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-            {cvData.projects.map((project, i) => {
+            {(cvData.projects || []).map((project, i) => {
               const [imgError, setImgError] = useState(false);
               return (
                 <motion.div 

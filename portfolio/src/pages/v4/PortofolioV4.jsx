@@ -114,7 +114,7 @@ const PortofolioV4 = () => {
               02 / {t('nav.skills')}
             </h2>
             <div className="flex flex-wrap gap-4">
-              {cvData.skills.map((skill, i) => (
+              {(cvData.skills || []).map((skill, i) => (
                 <div key={i} className="group relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
                   <div className="relative px-6 py-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl text-sm font-bold tracking-widest uppercase">
@@ -132,7 +132,7 @@ const PortofolioV4 = () => {
               03 / {t('nav.projects')}
             </h2>
             <div className="space-y-24">
-              {cvData.projects.map((project, i) => {
+              {(cvData.projects || []).map((project, i) => {
                 const [imgError, setImgError] = useState(false);
                 return (
                   <motion.div 
@@ -184,16 +184,16 @@ const PortofolioV4 = () => {
               04 / {t('nav.experience')}
             </h2>
             <div className="space-y-16">
-              {cvData.experience.map((exp, i) => (
+              {(cvData.experience || []).map((exp, i) => (
                 <div key={i} className="flex gap-8 group">
                   <div className="text-sm font-black text-slate-300 dark:text-slate-700 pt-1">
-                    {exp.roles[0].period.split('-')[0]}
+                    {exp.roles?.[0]?.period?.split('-')?.[0]}
                   </div>
                   <div>
                     <h3 className="text-2xl font-black group-hover:text-primary transition-colors">{exp.company}</h3>
-                    <p className="text-primary font-bold text-sm uppercase tracking-widest mb-4">{exp.roles[0].title[lang]}</p>
+                    <p className="text-primary font-bold text-sm uppercase tracking-widest mb-4">{exp.roles?.[0]?.title?.[lang]}</p>
                     <p className="text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
-                      {exp.roles[0].description[lang]}
+                      {exp.roles?.[0]?.description?.[lang]}
                     </p>
                   </div>
                 </div>

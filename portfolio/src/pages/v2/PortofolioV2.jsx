@@ -102,7 +102,7 @@ const PortofolioV2 = () => {
       <section className="py-32 px-6 md:px-24">
         <h2 className="text-xs uppercase tracking-[0.5em] text-slate-400 mb-20 text-center font-bold">Selected Experience</h2>
         <div className="max-w-5xl mx-auto space-y-24">
-          {cvData.experience.map((exp, i) => (
+          {(cvData.experience || []).map((exp, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
@@ -130,7 +130,7 @@ const PortofolioV2 = () => {
       <section className="py-32 px-6 md:px-24 bg-white dark:bg-slate-900/50">
         <h2 className="text-xs uppercase tracking-[0.5em] text-slate-400 mb-20 text-center font-bold">Featured Projects</h2>
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {cvData.projects.map((project, i) => (
+          {(cvData.projects || []).map((project, i) => (
             <motion.div
               key={i}
               whileHover={{ y: -10 }}
@@ -167,7 +167,7 @@ const PortofolioV2 = () => {
       {/* Skills V2 */}
       <section className="py-32 px-6 md:px-24">
         <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-          {cvData.skills.map((skill, i) => (
+          {(cvData.skills || []).map((skill, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.1, backgroundColor: '#3b82f6', color: '#fff' }}

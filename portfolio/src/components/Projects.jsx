@@ -16,9 +16,10 @@ const ProjectCard = ({ project, index, lang, t }) => {
     >
       <div className="aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
         {!imgError && project.image ? (
-          <img 
-            src={project.image} 
-            alt={project.name} 
+          <img
+            key={project.image}
+            src={`${project.image}?v=${project.updated_at || ''}`}
+            alt={project.name}
             onError={() => setImgError(true)}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -58,7 +59,7 @@ const Projects = () => {
   const lang = i18n.language;
   const cvData = window.cvData;
 
-  if (!cvData) return null;
+  if (!cvData || !cvData.projects?.length) return null;
 
   return (
     <section id="projects" className="py-20 px-4 bg-slate-50 dark:bg-slate-900/50">

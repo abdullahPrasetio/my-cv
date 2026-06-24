@@ -131,7 +131,7 @@ const PortofolioV8 = () => {
             [ POWER-UPS & SKILLS ]
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {cvData.skills.map((skill, i) => (
+            {(cvData.skills || []).map((skill, i) => (
               <RetroBlock key={i} color={i % 2 === 0 ? "cyan" : "green"} className="group">
                 <div className="flex items-center gap-3">
                   <Zap size={16} className="shrink-0 group-hover:animate-bounce" />
@@ -150,7 +150,7 @@ const PortofolioV8 = () => {
             [ STAGE SELECT ]
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
-            {cvData.projects.map((project, i) => (
+            {(cvData.projects || []).map((project, i) => (
               <div key={i} className="group cursor-pointer">
                 <RetroBlock color={i % 2 === 0 ? "magenta" : "cyan"} className="p-0 overflow-hidden">
                   <div className="aspect-video relative overflow-hidden border-b-4 border-inherit">
@@ -193,7 +193,7 @@ const PortofolioV8 = () => {
             [ QUEST LOGS ]
           </h2>
           <div className="space-y-12">
-            {cvData.experience.map((exp, i) => (
+            {(cvData.experience || []).map((exp, i) => (
               <div key={i} className="flex gap-4 md:gap-8">
                 <div className="flex flex-col items-center">
                   <div className="w-4 h-4 bg-green-400 border-2 border-white shadow-[0_0_10px_#4ade80]" />
@@ -201,9 +201,9 @@ const PortofolioV8 = () => {
                 </div>
                 <div className="flex-1 pb-12">
                   <div className="text-cyan-400 text-xs mb-2 uppercase font-bold">{exp.period}</div>
-                  <h3 className="text-lg md:text-xl font-black uppercase text-white mb-2">{exp.roles[0].title[lang]} @ {exp.company}</h3>
+                  <h3 className="text-lg md:text-xl font-black uppercase text-white mb-2">{exp.roles?.[0]?.title?.[lang]} @ {exp.company}</h3>
                   <p className="text-sm text-white/60 leading-relaxed italic">
-                    &gt; {exp.roles[0].description[lang]}
+                    &gt; {exp.roles?.[0]?.description?.[lang]}
                   </p>
                 </div>
               </div>

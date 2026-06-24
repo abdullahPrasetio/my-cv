@@ -40,9 +40,10 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="mb-8"
           >
-            <img 
-              src={cvData.avatar} 
-              alt={cvData.name} 
+            <img
+              key={cvData.avatar}
+              src={`${cvData.avatar}?v=${cvData.updated_at || ''}`}
+              alt={cvData.name}
               onError={() => setImageError(true)}
               className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary/20 shadow-xl mx-auto"
             />
@@ -80,14 +81,17 @@ const Hero = () => {
           >
             {t('hero.hire_me')}
           </a>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            className="px-8 py-3 border border-slate-200 dark:border-slate-800 font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors flex items-center space-x-2"
-          >
-            <Download size={18} />
-            <span>{t('hero.download_cv')}</span>
-          </a>
+          {cvData.resume && (
+            <a
+              href={cvData.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-slate-200 dark:border-slate-800 font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors flex items-center space-x-2"
+            >
+              <Download size={18} />
+              <span>{t('hero.download_cv')}</span>
+            </a>
+          )}
         </motion.div>
 
         <motion.div

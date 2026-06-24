@@ -150,7 +150,7 @@ const PortofolioV7 = () => {
             Tech <span className="text-purple-500">Arsenal</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {cvData.skills.map((skill, i) => (
+            {(cvData.skills || []).map((skill, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -184,7 +184,7 @@ const PortofolioV7 = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            {cvData.projects.map((project, i) => (
+            {(cvData.projects || []).map((project, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 50 }}
@@ -237,7 +237,7 @@ const PortofolioV7 = () => {
             Professional <span className="text-purple-500">Journey</span>
           </h2>
           <div className="space-y-12">
-            {cvData.experience.map((exp, i) => (
+            {(cvData.experience || []).map((exp, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
@@ -250,11 +250,11 @@ const PortofolioV7 = () => {
                   <span className="px-3 py-1 bg-purple-500 text-white text-[10px] font-black uppercase tracking-widest rounded-full">
                     {exp.period}
                   </span>
-                  <h3 className="text-xl font-black uppercase">{exp.roles[0].title[lang]}</h3>
+                  <h3 className="text-xl font-black uppercase">{exp.roles?.[0]?.title?.[lang]}</h3>
                 </div>
                 <h4 className="text-purple-500 font-bold mb-4 uppercase tracking-widest text-sm">{exp.company}</h4>
                 <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                  {exp.roles[0].description[lang]}
+                  {exp.roles?.[0]?.description?.[lang]}
                 </p>
               </motion.div>
             ))}

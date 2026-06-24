@@ -115,7 +115,7 @@ const PortofolioV5 = () => {
                     <span className="text-[#858585]">##</span> Skills.tech
                   </h2>
                   <div className="flex flex-wrap gap-3">
-                    {cvData.skills.map((skill, i) => (
+                    {(cvData.skills || []).map((skill, i) => (
                       <span key={i} className="px-3 py-1.5 bg-[#252526] rounded-md text-[#4ec9b0] text-sm border border-[#333333] hover:border-[#4ec9b0] transition-colors cursor-default">
                         `{skill.name}`
                       </span>
@@ -129,17 +129,17 @@ const PortofolioV5 = () => {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-3xl font-mono">
                 <pre className="text-[#d4d4d4] text-sm md:text-base leading-relaxed whitespace-pre-wrap">
                   <span className="text-[#d7ba7d]">"experience"</span>: <span className="text-[#ffd700]">[</span>
-                  {cvData.experience.map((exp, i) => (
+                  {(cvData.experience || []).map((exp, i) => (
                     <div key={i} className="pl-4 md:pl-8 my-4 border-l border-[#333333]/50">
                       <span className="text-[#c586c0]">{`{`}</span>
                       <div className="pl-6 py-1">
                         <span className="text-[#9cdcfe]">"company"</span>: <span className="text-[#ce9178]">"{exp.company}"</span>,
                         <br/>
-                        <span className="text-[#9cdcfe]">"role"</span>: <span className="text-[#ce9178]">"{exp.roles[0].title[lang]}"</span>,
+                        <span className="text-[#9cdcfe]">"role"</span>: <span className="text-[#ce9178]">"{exp.roles?.[0]?.title?.[lang]}"</span>,
                         <br/>
-                        <span className="text-[#9cdcfe]">"period"</span>: <span className="text-[#ce9178]">"{exp.roles[0].period}"</span>,
+                        <span className="text-[#9cdcfe]">"period"</span>: <span className="text-[#ce9178]">"{exp.roles?.[0]?.period}"</span>,
                         <br/>
-                        <span className="text-[#9cdcfe]">"description"</span>: <span className="text-[#ce9178]">"{exp.roles[0].description[lang]}"</span>
+                        <span className="text-[#9cdcfe]">"description"</span>: <span className="text-[#ce9178]">"{exp.roles?.[0]?.description?.[lang]}"</span>
                       </div>
                       <span className="text-[#c586c0]">{`}`}</span>{i < cvData.experience.length - 1 ? ',' : ''}
                     </div>
@@ -153,7 +153,7 @@ const PortofolioV5 = () => {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl font-mono">
                 <div className="text-[#569cd6] mb-8 text-base md:text-lg">const <span className="text-[#4fc1ff]">featuredProjects</span> = [</div>
                 <div className="space-y-10 pl-6 border-l-2 border-[#333333] ml-2">
-                  {cvData.projects.map((project, i) => (
+                  {(cvData.projects || []).map((project, i) => (
                     <div key={i} className="relative group">
                       <div className="absolute -left-[31px] top-2 w-4 h-4 rounded-full bg-[#1e1e1e] border-2 border-[#569cd6] group-hover:bg-[#569cd6] transition-colors"></div>
                       <div className="text-[#c586c0] font-bold">{`{`}</div>

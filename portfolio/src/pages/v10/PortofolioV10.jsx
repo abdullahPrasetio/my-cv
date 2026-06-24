@@ -148,7 +148,7 @@ const PortofolioV10 = () => {
           {/* 3. Skills Slide */}
           <Section title="02. Capabilities" subtitle="Tech Arsenal">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-              {cvData.skills.map((skill, i) => (
+              {(cvData.skills || []).map((skill, i) => (
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.05 }}
@@ -167,12 +167,12 @@ const PortofolioV10 = () => {
           {/* 4. Experience Slide */}
           <Section title="03. History" subtitle="Career Path">
             <div className="flex gap-6 md:gap-12 overflow-x-auto pb-12 scrollbar-hide no-scrollbar">
-              {cvData.experience.map((exp, i) => (
+              {(cvData.experience || []).map((exp, i) => (
                 <div key={i} className="min-w-[280px] md:min-w-[450px] p-6 md:p-12 bg-white/5 border border-white/10 rounded-[32px] md:rounded-[40px] relative">
                   <div className="text-[10px] md:text-sm font-black text-blue-500 uppercase tracking-widest mb-4 md:mb-6">{exp.period}</div>
-                  <h3 className="text-xl md:text-4xl font-black uppercase tracking-tight mb-2">{exp.roles[0].title[lang]}</h3>
+                  <h3 className="text-xl md:text-4xl font-black uppercase tracking-tight mb-2">{exp.roles?.[0]?.title?.[lang]}</h3>
                   <div className="text-xs md:text-lg opacity-40 font-bold uppercase mb-4 md:mb-8">{exp.company}</div>
-                  <p className="text-sm md:text-lg opacity-70 leading-relaxed">{exp.roles[0].description[lang]}</p>
+                  <p className="text-sm md:text-lg opacity-70 leading-relaxed">{exp.roles?.[0]?.description?.[lang]}</p>
                   <div className="absolute top-6 right-6 md:top-12 md:right-12 opacity-10">
                     <Briefcase size={32} />
                   </div>
@@ -184,7 +184,7 @@ const PortofolioV10 = () => {
           {/* 5. Projects Slide */}
           <Section title="04. Gallery" subtitle="Featured Works">
             <div className="flex gap-8 md:gap-12 overflow-x-auto pb-12 no-scrollbar">
-              {cvData.projects.map((project, i) => (
+              {(cvData.projects || []).map((project, i) => (
                 <div key={i} className="min-w-[280px] md:min-w-[600px] group">
                   <div className="aspect-video rounded-[24px] md:rounded-[40px] overflow-hidden mb-4 md:mb-8 relative">
                     <img 
