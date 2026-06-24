@@ -1,7 +1,7 @@
 export const useAuth = () => {
   const config = useRuntimeConfig()
   const token = useCookie<string | null>('cv_token', { maxAge: 60 * 60 * 24 })
-  const user = useState<{ user_id: string; username?: string } | null>('auth_user', () => null)
+  const user = useState<{ user_id: string; username?: string; name?: string; email?: string } | null>('auth_user', () => null)
 
   const isLoggedIn = computed(() => !!token.value)
   const authHeaders = computed(() => ({

@@ -1,25 +1,40 @@
 <script setup lang="ts">
-const props = defineProps<{ modelValue: string; folder?: string }>()
+const props = defineProps<{ modelValue: string; folder?: string; oldUrl?: string }>()
 const emit = defineEmits<{ 'update:modelValue': [string] }>()
 const config = useRuntimeConfig()
 const { authHeaders } = useAuth()
 const { error } = useToast()
 const uploading = ref(false)
 
+const MAX_SIZE = 2 * 1024 * 1024 // 2MB
+
 const onFile = async (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0]
   if (!file) return
+
+  if (file.size > MAX_SIZE) {
+    error('Ukuran file melebihi batas 2MB')
+    return
+  }
+
   uploading.value = true
   try {
-    const form = new FormData()
-    form.append('file', file)
-    form.append('folder', props.folder || 'projects')
-    const res = await $fetch<{ data: { url: string } }>(`${config.public.apiUrl}/media/upload`, {
+    const fd = new FormData()
+    fd.append('file', file)
+    fd.append('folder', props.folder || 'projects')
+    if (props.oldUrl) fd.append('old_url', props.oldUrl)
+    const res = await fetch(`${config.public.apiUrl}/media/upload`, {
       method: 'POST',
       headers: authHeaders.value,
-      body: form,
+      body: fd,
     })
-    emit('update:modelValue', res.data.url)
+    if (!res.ok) {
+      const json = await res.json() as { message?: string }
+      error(json.message || 'Gagal upload gambar')
+      return
+    }
+    const json = await res.json() as { data: { url: string } }
+    emit('update:modelValue', json.data.url)
   } catch {
     error('Gagal upload gambar')
   } finally {

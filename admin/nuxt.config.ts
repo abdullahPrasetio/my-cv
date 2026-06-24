@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1',
+      portfolioUrl: process.env.NUXT_PUBLIC_PORTFOLIO_URL || 'http://localhost:5173',
     },
   },
   app: {
